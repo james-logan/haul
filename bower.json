@@ -1,0 +1,25 @@
+{
+  "name": "haul",
+  "version": "1.0.0",
+  "homepage": "https://github.com/james-logan/haul",
+  "authors": [
+    "James Logan <jamesblogan20@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "angular": "~1.4.1",
+    "angular-route": "~1.4.1",
+    "chosen": "~1.4.2",
+    "firebase": "~2.2.7",
+    "jquery-color": "~2.1.2",
+    "jquery-smooth-scroll": "~1.5.5"
+  }
+}
