@@ -1,0 +1,47 @@
+.menu {
+  background-color: darken(rgb(0, 51, 102), 5%);
+  box-shadow: 0 0 10px black;
+  color: white;
+  li {
+    &:first-child button {
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+    }
+    &:last-child button {
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+  }
+}
+
+.list-group {
+  color: black;
+}
+
+.fat {
+  li > button {
+    width: 100%;
+    /*border-radius: 5px;*/
+  }
+}
+
+.orbitron {
+  font-family: Orbitron;
+  font-weight: 900;
+  color: rgb(255, 204, 0);
+  font-size: 65px;
+  /*text-shadow: 0 0 5px rgb(235, 184, 0);*/
+}
+
+.btn-trans {
+  background: transparent;
+  border: 2px solid darken(darkgray, 10%);
+}
+
+.big {
+  min-height: 100%;
+}
+
+.goal-weight {
+  color: black;
+}
