@@ -78,7 +78,7 @@ var randomPort = getRandomInt(3000, 65536);
               '!**/*.jade',
               '!**/*.scss',
               '!**/*.js',
-              '!**/*.otf'
+              '**/*.otf'
             ],
             dest: 'public/',
             filter: 'isFile'

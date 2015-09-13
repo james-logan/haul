@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'VanBerg';
+  src: url('../assets/VanBerger_Stencil.otf')  format('opentype');
+}
+
 .menu {
   background-color: rgb(0, 27, 55);
   box-shadow: 0 0 10px black;
@@ -36,6 +41,7 @@
 }
 
 .orbitron {
+  font-family: "VanBerg";
   /*font-family: Orbitron;*/
   font-weight: 900;
   /*color: rgb(255, 204, 0);*/
