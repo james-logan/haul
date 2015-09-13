@@ -31,5 +31,11 @@
     "grunt-gh-pages": "^0.10.0",
     "grunt-sass": "^1.0.0",
     "load-grunt-tasks": "^3.2.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "express": "^4.13.3",
+    "jade": "^1.11.0",
+    "node-sass-middleware": "^0.9.0"
   }
 }
