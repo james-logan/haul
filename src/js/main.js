@@ -3,8 +3,8 @@ angular
   .config(function ($routeProvider) {
     console.log('config firing')
     $routeProvider
-      .when('/', {
-        templateUrl: 'index.html',
+      .when('/newworkout', {
+        templateUrl: 'views/newworkout.html',
         controller: 'MainControlBridge',
         controllerAs: 'bridge'
       })
