@@ -7,18 +7,20 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/routes')
 
 app.set('view engine', 'jade')
-
-//makes the body available from post requests
-app.use(bodyParser.urlencoded({extended: true}))
-
-app.use(express.static('www'))
 app.use(sass({
   dest: 'www/css',
   outputStyle: 'compressed',
   prefix: '/css',
   sourceMap: app.get('env') === 'production' ? 'false' : true,
-  src: 'www/css'
+  src: 'styles',
+  force: true
 }));
+
+//makes the body available from post requests
+app.use(bodyParser.urlencoded({extended: true}))
+
+app.use(express.static('www'))
+
 
 app.use('/', routes)
 

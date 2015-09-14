@@ -65,3 +65,20 @@
 .overflow-scroll {
   overflow-y: scroll;
 }
+
+//front page styles
+
+.banner {
+  height: 500px;
+  background-image: url(../assets/training-601214.jpg);
+  background-size: 100%;
+  h1 {
+    margin-right: 50px;
+    font-size: 100px;
+    color: white;
+  }
+}
+
+.intro {
+  font-size: 30px;
+}
