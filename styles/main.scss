@@ -27,7 +27,7 @@
   padding: 3px 15px;
 }
 .panel-body {
-  height: 250px;
+  max-height: 250px;
 }
 .list-group {
   color: black;
@@ -71,6 +71,7 @@
 .banner {
   height: 500px;
   background-image: url(../assets/training-601214.jpg);
+  background-attachment: fixed;
   background-size: 100%;
   h1 {
     margin-right: 50px;
@@ -79,6 +80,23 @@
   }
 }
 
+.banner2 {
+  height: 300px;
+  background-image: url(../assets/training-828741.jpg);
+  background-attachment: fixed;
+  background-size: 100%;
+}
+
 .intro {
-  font-size: 30px;
+  font-size: 20px;
+}
+
+.brand {
+  font-size: 40px;
+}
+
+nav {
+  button {
+    margin-left: 5px;
+  }
 }
