@@ -1,3 +1,64 @@
 extends ../bridge.jade
 block whatever
-  h1 Programs
+  .col-xs-7.col-xs-offset-1
+    h1.page-header Create A Program
+    form
+      .form-group
+        label Number of Days Per Cycle
+        input.form-control(type="number" placeholder="7")
+    .row
+      .col-xs-12
+        .row
+          .panel.panel-primary
+            .panel-heading
+              .panel-title Select a Workout
+            div(style="height: 150px").panel-body.overflow-scroll
+              .panel
+                h5 Cardio Maxx
+              .panel
+                h5 Pull
+              .panel
+                h5 Full-body
+              .panel
+                h5 Leg Day
+              .panel
+                h5 Yoga
+              .panel
+                h5 Swimming
+          .day.panel.panel-success.pull-left
+            .panel-heading
+              h5.panel-title Day 1
+            .panel-body
+              p Push
+          .day.panel.panel-success.pull-left
+            .panel-heading
+              h5.panel-title Day 2
+            .panel-body
+              p Pull
+          .day.panel.panel-success.pull-left
+            .panel-heading
+              h5.panel-title Day 3
+            .panel-body
+              p Legs
+          .day.panel.panel-success.pull-left
+            .panel-heading
+              h5.panel-title Day 4
+            .panel-body
+              p Push
+          .day.panel.panel-success.pull-left
+            .panel-heading
+              h5.panel-title Day 5
+            .panel-body
+              p Pull
+          .day.panel.panel-success.pull-left
+            .panel-heading
+              h5.panel-title Day 6
+            .panel-body
+              p Legs
+          .day.panel.panel-success.pull-left
+            .panel-heading
+              h5.panel-title Day 7
+            .panel-body
+              p Rest
+    .row
+      button.btn.btn-warning.btn-block Create Program

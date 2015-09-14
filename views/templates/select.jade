@@ -1,0 +1,25 @@
+extends ../bridge.jade
+block whatever
+  .col-xs-9
+    .row
+      .col-xs-8.col-xs-offset-2
+        h1 Complete Your Scheduled Workout for Today:
+        a(href="#/bridge/complete")
+          button.btn.btn-danger Full-body
+        h3 Or, choose from your list of workouts
+        .panel.panel-warning
+          .panel-heading
+            .panel-title Select a Workout
+          .panel-body.overflow-scroll
+            .panel
+              h5 Cardio Maxx
+            .panel
+              h5 Pull
+            .panel
+              h5 Full-body
+            .panel
+              h5 Leg Day
+            .panel
+              h5 Yoga
+            .panel
+              h5 Swimming

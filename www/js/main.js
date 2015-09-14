@@ -28,6 +28,11 @@ angular
         controller: 'mainControlBridge',
         controllerAs: 'bridge'
       })
+      .when('/bridge/select', {
+        templateUrl: '/select',
+        controller: 'mainControlBridge',
+        controllerAs: 'bridge'
+      })
       .when('/bridge/complete', {
         templateUrl: '/complete',
         controller: 'mainControlBridge',

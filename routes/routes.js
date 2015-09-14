@@ -37,5 +37,8 @@ router.get('/programs', function (req, res) {
 router.get('/complete', function (req, res) {
   res.render('templates/complete')
 })
+router.get('/select', function (req, res) {
+  res.render('templates/select')
+})
 
 module.exports = router

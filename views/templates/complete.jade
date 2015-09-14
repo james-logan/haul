@@ -1,3 +1,87 @@
 extends ../bridge.jade
 block whatever
-  h1 Complete a Workout
+  .col-xs-9
+    .row
+      .col-xs-12
+        h1.page-title Full-body
+      .col-xs-12.exercise-block
+        .row
+          .col-xs-4
+            h3.text-left Exercise
+          .col-xs-2
+            h3.text-left Weight
+          .col-xs-6
+            h3.text-left Sets
+      .col-xs-12.exercise-block
+        .row
+          .col-xs-4
+            h4.text-left Squat: Low bar
+          .col-xs-2
+            h4.text-left 165 lbs
+          .col-xs-6
+            button.btn.btn-warning 5
+            button.btn.btn-warning 5
+            button.btn.btn-warning 5
+            button.btn.btn-warning 5
+            button.btn.btn-warning 5
+      .col-xs-12.exercise-block
+        .row
+          .col-xs-4
+            h4.text-left Bench Press
+          .col-xs-2
+            h4.text-left 150 lbs
+          .col-xs-6
+            button.btn.btn-warning 5
+            button.btn.btn-warning 5
+            button.btn.btn-warning 5
+            button.btn.btn-warning 5
+            button.btn.btn-warning 5
+      .col-xs-12.exercise-block
+        .row
+          .col-xs-4
+            h4.text-left Bent-over Barbell Row
+          .col-xs-2
+            h4.text-left 120 lbs
+          .col-xs-6
+            button.btn.btn-warning 5
+            button.btn.btn-warning 5
+            button.btn.btn-warning 5
+            button.btn.btn-warning 5
+            button.btn.btn-warning 5
+      .col-xs-12.exercise-block
+        .row
+          .col-xs-4
+            h4.text-left Dips
+          .col-xs-2
+            h4.text-left Body Weight
+          .col-xs-6
+            button.btn.btn-warning 5
+            button.btn.btn-warning 5
+            button.btn.btn-warning 5
+      .col-xs-12.exercise-block
+        .row
+          .col-xs-4
+            h4.text-left Tricep Cable Push-downs
+          .col-xs-2
+            h4.text-left 25 lbs
+          .col-xs-6
+            button.btn.btn-warning 10
+            button.btn.btn-warning 10
+            button.btn.btn-warning 10
+      .col-xs-12.exercise-block
+        .row
+          .col-xs-4
+            h4.text-left French Press
+          .col-xs-2
+            h4.text-left 25 lbs
+          .col-xs-6
+            button.btn.btn-warning 10
+            button.btn.btn-warning 10
+            button.btn.btn-warning 10
+      .col-xs-12
+        form
+          .form-group
+            label Current Weight:
+            input.form-control(type="number" min="0")
+          button.btn.btn-danger(type="submit") Finish Workout
+
