@@ -11,13 +11,13 @@ block whatever
           .panel-heading
             .panel-title Search for Exercises
           .panel-body
-            form.search-exercise
+            form(ng-submit="bridge.searchExercises(bridge.form)").search-exercise
               .form-group
                 label Exercise Name
                 .input-group
-                  input.form-control(type='search' name='search' placeholder="Lat Pulldown")
+                  input.form-control(type='search' name='search' placeholder="Lat Pulldown" ng-model="bridge.form.search")
                   span.input-group-btn
-                    button.btn.btn-default Search
+                    button.btn.btn-default(type="submit") Search
               h5 Filter By:
               .row
                 .col-xs-6
@@ -74,18 +74,18 @@ block whatever
           .panel-heading
             .panel-title Results
           .panel-body.overflow-scroll
-            .panel.exercise
-              h5 Lat Pulldown
-            .panel.exercise
-              h5 Dumbbell Lateral Raise
-            .panel.exercise
-              h5 Seated Cable Row
-            .panel.exercise
-              h5 Pendlay Row
-            .panel.exercise
-              h5 Bent Over Barbell Row
-            .panel.exercise
-              h5 Face Pull
+            div(ng-repeat="exercise in bridge.results").panel.exercise
+              h5 {{exercise.name}}
+            //- .panel.exercise
+            //-   h5 Dumbbell Lateral Raise
+            //- .panel.exercise
+            //-   h5 Seated Cable Row
+            //- .panel.exercise
+            //-   h5 Pendlay Row
+            //- .panel.exercise
+            //-   h5 Bent Over Barbell Row
+            //- .panel.exercise
+            //-   h5 Face Pull
     .row
       .col-xs-5
         .panel.panel-success

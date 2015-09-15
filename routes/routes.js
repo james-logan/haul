@@ -3,6 +3,8 @@
 var express = require('express');
 var router = express.Router();
 
+var mongo = require('../lib/mongodb');
+
 
 router.get('/', function (req, res) {
   res.render('index')
@@ -14,6 +16,12 @@ router.get('/front', function (req, res) {
 
 router.get('/newworkout', function (req, res) {
   res.render('templates/newworkout')
+})
+
+router.get('/api/exercises', function (req, res) {
+  mongo.getDb().collection('exercises').find({"name": req.query.exer}).toArray(function (err, items) {
+    res.send(items)
+  })
 })
 
 router.get('/login', function (req, res) {

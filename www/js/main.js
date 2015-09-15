@@ -50,9 +50,23 @@ angular
       })
 
   })
-  .controller('mainControlBridge', function ($scope) {
+  .controller('mainControlBridge', function ($scope, $http) {
     console.log('controller instantiated')
     var vm = this;
+
+    vm.results;
+
+    vm.form = {};
+
+    vm.searchExercises = function (formData) {
+      console.log('search function fired')
+      $http
+        .get('/api/exercises?exer=' + formData.search)
+        .success(function (data) {
+          vm.results = data;
+          console.log(data)
+        })
+    }
   })
   .controller('frontPage', function ($scope) {
     console.log('front controller instantiated')
