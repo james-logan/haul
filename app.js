@@ -1,12 +1,17 @@
 var express = require('express');
 var app = express();
 
-var sass = require('node-sass-middleware')
+var sass = require('node-sass-middleware');
 
 var bodyParser = require('body-parser');
-var routes = require('./routes/routes')
+var routes = require('./routes/routes');
 
-app.set('view engine', 'jade')
+//bringing in the database module
+var database = require('./lib/mongodb');
+
+app.set('port', process.env.PORT || 3000);
+
+app.set('view engine', 'jade');
 app.use(sass({
   dest: 'www/css',
   outputStyle: 'compressed',
@@ -17,15 +22,34 @@ app.use(sass({
 }));
 
 //makes the body available from post requests
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.urlencoded({extended: true}));
 
-app.use(express.static('www'))
+app.use(express.static('www'));
 
+app.use('/', routes);
 
-app.use('/', routes)
+database.connect(onDbConnect);
 
-var port = process.env.PORT || 3000;
+function onDbConnect(err, db) {
+  if (err) {
+    console.error('Database Connection Error.' + err)
+  } else {
+    console.log('Database Connection Established at' + db.options.url);
+    startNodeListener();
+  }
+}
 
-app.listen(port)
+function startNodeListener () {
+  var server = app.listen(app.get('port'), function () {
+    var port = server.address().port;
+    var mode = app.get('env');
 
-module.exports = app
+    console.log('Server listening on port ' + port + ' in ' + mode + ' mode...');
+  });
+}
+
+// var port = process.env.PORT || 3000;
+
+// app.listen(port);
+
+module.exports = app;
