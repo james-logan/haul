@@ -58,6 +58,8 @@ angular
 
     vm.form = {};
 
+    vm.workout = [];
+
     vm.searchExercises = function (formData) {
       console.log('search function fired')
       $http
@@ -66,6 +68,12 @@ angular
           vm.results = data;
           console.log(data)
         })
+    }
+
+    vm.addExercise = function (exer) {
+      console.log('addExercise firing')
+      console.log(exer)
+      vm.workout.push(exer)
     }
   })
   .controller('frontPage', function ($scope) {

@@ -74,38 +74,23 @@ block whatever
           .panel-heading
             .panel-title Results
           .panel-body.overflow-scroll
-            div(ng-repeat="exercise in bridge.results").panel.exercise
+            div(ng-repeat="exercise in bridge.results").exercise
               h5 {{exercise.name}}
-            //- .panel.exercise
-            //-   h5 Dumbbell Lateral Raise
-            //- .panel.exercise
-            //-   h5 Seated Cable Row
-            //- .panel.exercise
-            //-   h5 Pendlay Row
-            //- .panel.exercise
-            //-   h5 Bent Over Barbell Row
-            //- .panel.exercise
-            //-   h5 Face Pull
+              button(ng-click="bridge.addExercise(exercise)").btn.btn-primary +
     .row
-      .col-xs-5
-        .panel.panel-success
-          .panel-heading
-            .panel-title Exercises
-          .panel-body.overflow-scroll
-            .panel.exercise
-              h5 Lowbar Back Squats
-            .panel.exercise
-              h5 Overhead Press
-            .panel.exercise
-              h5 Deadlift
-            .panel.exercise
-              h5 Pullup
-            .panel.exercise
-              h5 Dumbbell Curls
-            .panel.exercise
-              h5 Cable Curls
-      .col-xs-7
-        .panel.panel-danger
-          .panel-heading
-            .panel-title Progression
+      .col-xs-12.overflow-scroll
+        table.table
+          tr
+            th Exercise
+            th Sets
+            th Reps
+            th Progression
+          tr(ng-repeat="exercise in bridge.workout")
+            td {{exercise.name}}
+            td
+              input(type="number")
+            td
+              input(type="number")
+            td
+              input(type="number")
 
