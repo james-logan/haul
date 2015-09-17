@@ -12,5 +12,11 @@ module.exports = {
     workOutModel.findAll(function (err, data) {
       res.send(data)
     })
+  },
+  findOne: function (req, res) {
+    workOutModel.findOne(req.query.id, function (err, data) {
+      if (err) throw err;
+      res.send(data)
+    })
   }
 }

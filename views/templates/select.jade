@@ -11,15 +11,6 @@ block whatever
           .panel-heading
             .panel-title Select a Workout
           .panel-body.overflow-scroll
-            .panel
-              h5 Cardio Maxx
-            .panel
-              h5 Pull
-            .panel
-              h5 Full-body
-            .panel
-              h5 Leg Day
-            .panel
-              h5 Yoga
-            .panel
-              h5 Swimming
+            .panel(ng-repeat="work in select.workouts")
+              a(href="#/bridge/complete/{{work._id}}")
+                button.btn.btn-primary.btn-block {{work.name}}

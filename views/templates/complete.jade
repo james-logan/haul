@@ -3,7 +3,7 @@ block whatever
   .col-xs-9
     .row
       .col-xs-12
-        h1.page-title Full-body
+        h1.page-title {{complete.workout.name}}
       .col-xs-12.exercise-block
         .row
           .col-xs-4
@@ -12,72 +12,69 @@ block whatever
             h3.text-left Weight
           .col-xs-6
             h3.text-left Sets
-      .col-xs-12.exercise-block
+      .col-xs-12.exercise-block(ng-repeat="exer in complete.workout.exercises")
         .row
           .col-xs-4
-            h4.text-left Squat: Low bar
+            h4.text-left {{exer.name}}
           .col-xs-2
-            h4.text-left 165 lbs
+            input(type="number" style="width:20px;")
+            h4.text-left lbs
           .col-xs-6
-            button.btn.btn-warning 5
-            button.btn.btn-warning 5
-            button.btn.btn-warning 5
-            button.btn.btn-warning 5
-            button.btn.btn-warning 5
-      .col-xs-12.exercise-block
-        .row
-          .col-xs-4
-            h4.text-left Bench Press
-          .col-xs-2
-            h4.text-left 150 lbs
-          .col-xs-6
-            button.btn.btn-warning 5
-            button.btn.btn-warning 5
-            button.btn.btn-warning 5
-            button.btn.btn-warning 5
-            button.btn.btn-warning 5
-      .col-xs-12.exercise-block
-        .row
-          .col-xs-4
-            h4.text-left Bent-over Barbell Row
-          .col-xs-2
-            h4.text-left 120 lbs
-          .col-xs-6
-            button.btn.btn-warning 5
-            button.btn.btn-warning 5
-            button.btn.btn-warning 5
-            button.btn.btn-warning 5
-            button.btn.btn-warning 5
-      .col-xs-12.exercise-block
-        .row
-          .col-xs-4
-            h4.text-left Dips
-          .col-xs-2
-            h4.text-left Body Weight
-          .col-xs-6
-            button.btn.btn-warning 5
-            button.btn.btn-warning 5
-            button.btn.btn-warning 5
-      .col-xs-12.exercise-block
-        .row
-          .col-xs-4
-            h4.text-left Tricep Cable Push-downs
-          .col-xs-2
-            h4.text-left 25 lbs
-          .col-xs-6
-            button.btn.btn-warning 10
-            button.btn.btn-warning 10
-            button.btn.btn-warning 10
-      .col-xs-12.exercise-block
-        .row
-          .col-xs-4
-            h4.text-left French Press
-          .col-xs-2
-            h4.text-left 25 lbs
-          .col-xs-6
-            button.btn.btn-warning 10
-            button.btn.btn-warning 10
-            button.btn.btn-warning 10
+            button(ng-repeat="set in complete.sets(exer) track by $index").btn.btn-warning {{exer.reps}}
+      //- .col-xs-12.exercise-block
+      //-   .row
+      //-     .col-xs-4
+      //-       h4.text-left Bench Press
+      //-     .col-xs-2
+      //-       h4.text-left 150 lbs
+      //-     .col-xs-6
+      //-       button.btn.btn-warning 5
+      //-       button.btn.btn-warning 5
+      //-       button.btn.btn-warning 5
+      //-       button.btn.btn-warning 5
+      //-       button.btn.btn-warning 5
+      //- .col-xs-12.exercise-block
+      //-   .row
+      //-     .col-xs-4
+      //-       h4.text-left Bent-over Barbell Row
+      //-     .col-xs-2
+      //-       h4.text-left 120 lbs
+      //-     .col-xs-6
+      //-       button.btn.btn-warning 5
+      //-       button.btn.btn-warning 5
+      //-       button.btn.btn-warning 5
+      //-       button.btn.btn-warning 5
+      //-       button.btn.btn-warning 5
+      //- .col-xs-12.exercise-block
+      //-   .row
+      //-     .col-xs-4
+      //-       h4.text-left Dips
+      //-     .col-xs-2
+      //-       h4.text-left Body Weight
+      //-     .col-xs-6
+      //-       button.btn.btn-warning 5
+      //-       button.btn.btn-warning 5
+      //-       button.btn.btn-warning 5
+      //- .col-xs-12.exercise-block
+      //-   .row
+      //-     .col-xs-4
+      //-       h4.text-left Tricep Cable Push-downs
+      //-     .col-xs-2
+      //-       h4.text-left 25 lbs
+      //-     .col-xs-6
+      //-       button.btn.btn-warning 10
+      //-       button.btn.btn-warning 10
+      //-       button.btn.btn-warning 10
+      //- .col-xs-12.exercise-block
+      //-   .row
+      //-     .col-xs-4
+      //-       h4.text-left French Press
+      //-     .col-xs-2
+      //-       h4.text-left 25 lbs
+      //-     .col-xs-6
+      //-       button.btn.btn-warning 10
+      //-       button.btn.btn-warning 10
+      //-       button.btn.btn-warning 10
       .col-xs-12
         form
           .form-group

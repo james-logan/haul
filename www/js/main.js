@@ -48,6 +48,30 @@ angular
   .controller('registerController', function ($scope) {
     console.log('register controller instantiated')
   })
+  .controller('workOutCompletionController', function ($scope, $http, $routeParams) {
+    var vm = this;
+    console.log('completions controller instantiated');
+
+    vm.sets = function (exer) {
+      return new Array(exer.sets)
+    }
+
+    $http
+      .get('/api/workout?id=' + $routeParams.id)
+      .success(function (data) {
+        vm.workout = data;
+      })
+  })
+  .controller('selectController', function ($scope, $http) {
+    console.log('select Controller instantiated')
+    var vm = this;
+    $http
+      .get('/api/workouts')
+      .success(function (data) {
+        vm.workouts = data;
+      })
+
+  })
   .controller('createProgramController', function ($scope, $http) {
     var vm = this;
     vm.workouts = [];

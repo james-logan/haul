@@ -30,13 +30,13 @@ angular
       })
       .when('/bridge/select', {
         templateUrl: '/select',
-        controller: 'mainControlBridge',
-        controllerAs: 'bridge'
+        controller: 'selectController',
+        controllerAs: 'select'
       })
-      .when('/bridge/complete', {
+      .when('/bridge/complete/:id', {
         templateUrl: '/complete',
-        controller: 'mainControlBridge',
-        controllerAs: 'bridge'
+        controller: 'workOutCompletionController',
+        controllerAs: 'complete'
       })
       .when('/login', {
         templateUrl: '/login',

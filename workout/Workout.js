@@ -1,4 +1,5 @@
 var mongo = require('../lib/mongodb.js');
+var ObjectID = require('mongodb').ObjectID;
 
 
 var Workout = function (pojo) {
@@ -21,6 +22,12 @@ Workout.saveNew = function (workoutObj, cb) {
 Workout.findAll = function (cb) {
   mongo.getDb().collection('workouts').find().toArray(function (err, data) {
     cb(err, data);
+  })
+}
+
+Workout.findOne = function (id, cb) {
+  mongo.getDb().collection('workouts').findOne({_id: ObjectID(id)}, function (err, data) {
+    cb(err, data)
   })
 }
 

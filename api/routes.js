@@ -8,6 +8,8 @@ var exerCtrl = require('./exercisecontroller.js')
 
 router.get('/exercises', exerCtrl.search)
 
+router.get('/workout', wrkCtrl.findOne)
+
 router.post('/workout', wrkCtrl.save)
 
 router.get('/workouts', wrkCtrl.findAll)
