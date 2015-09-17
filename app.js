@@ -5,6 +5,7 @@ var sass = require('node-sass-middleware');
 
 var bodyParser = require('body-parser');
 var routes = require('./routes/routes');
+var api = require('./api/routes');
 
 //bringing in the database module
 var database = require('./lib/mongodb');
@@ -22,11 +23,13 @@ app.use(sass({
 }));
 
 //makes the body available from post requests
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 app.use(express.static('www'));
 
+app.use('/api', api);
 app.use('/', routes);
+
 
 database.connect(onDbConnect);
 

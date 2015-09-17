@@ -68,15 +68,14 @@ block whatever
                       label
                         input(type='radio' name="bodyPart")
                         | Core
-
       .col-xs-7
         .panel.panel-primary
           .panel-heading
             .panel-title Results
           .panel-body.overflow-scroll
-            div(ng-repeat="exercise in bridge.results").exercise
-              h5 {{exercise.name}}
-              button(ng-click="bridge.addExercise(exercise)").btn.btn-primary +
+            div(ng-repeat="exercise in bridge.results")
+              h5.pull-left {{exercise.name}}
+              button(ng-click="bridge.addExercise(exercise)").btn.btn-success.pull-right +
     .row
       .col-xs-12.overflow-scroll
         table.table
@@ -84,13 +83,20 @@ block whatever
             th Exercise
             th Sets
             th Reps
+            th Rest
             th Progression
-          tr(ng-repeat="exercise in bridge.workout")
+          tr(ng-repeat="exercise in bridge.workout.exercises")
             td {{exercise.name}}
             td
-              input(type="number")
+              input(type="number" ng-model="exercise.sets")
+              //- bridge.workout[$index]
             td
-              input(type="number")
+              input(type="number" ng-model="exercise.reps")
             td
-              input(type="number")
+              input(type="number" ng-model="exercise.rest")
+            td
+              input(type="number" ng-model="exercise.progression")
+    .row
+      .col-xs-12
+        button(ng-click="bridge.saveWorkout()").btn.btn-success.btn-block Save Workout
 

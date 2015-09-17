@@ -58,7 +58,12 @@ angular
 
     vm.form = {};
 
-    vm.workout = [];
+    vm.workout = {
+      name: "",
+      exercises: [],
+      author: "",
+      authorId: ""
+    };
 
     vm.searchExercises = function (formData) {
       console.log('search function fired')
@@ -73,7 +78,15 @@ angular
     vm.addExercise = function (exer) {
       console.log('addExercise firing')
       console.log(exer)
-      vm.workout.push(exer)
+      vm.workout.exercises.push(exer)
+    }
+
+    vm.saveWorkout = function () {
+      $http
+        .post('/api/workout', vm.workout)
+        .success(function(data) {
+          console.log('success');
+        })
     }
   })
   .controller('frontPage', function ($scope) {
