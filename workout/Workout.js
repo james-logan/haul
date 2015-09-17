@@ -18,5 +18,20 @@ Workout.saveNew = function (workoutObj, cb) {
   })
 }
 
+Workout.findAll = function (cb) {
+  mongo.getDb().collection('workouts').find().toArray(function (err, data) {
+    cb(err, data);
+  })
+}
+
+Workout.saveProg = function (progObj, cb) {
+  console.log('save program is running')
+  mongo.getDb().collection('programs').insertOne(progObj, function (err, data) {
+    if (err) throw err;
+    // cb(err, data)
+  })
+
+}
+
 module.exports = Workout;
 

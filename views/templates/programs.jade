@@ -4,61 +4,55 @@ block whatever
     h1.page-header Create A Program
     form
       .form-group
+        label Program Name
+        input(type="text" placeholder="Body Rocking PPL" ng-model="prog.program.name").form-control
+      .form-group
         label Number of Days Per Cycle
-        input.form-control(type="number" placeholder="7")
+        input.form-control(type="number" placeholder="7" ng-model="prog.cycle" min="1" max="30")
     .row
       .col-xs-12
         .row
-          .panel.panel-primary
+          //- .panel.panel-primary
+          //-   .panel-heading
+          //-     .panel-title Select a Workout
+          //-   div(style="height: 150px").panel-body.overflow-scroll
+          //-     .panel(ng-repeat="work in prog.workouts")
+          //-       h5 {{work.name}}
+          div(ng-repeat="day in prog.days() track by $index").day.panel.panel-success.pull-left
             .panel-heading
-              .panel-title Select a Workout
-            div(style="height: 150px").panel-body.overflow-scroll
-              .panel
-                h5 Cardio Maxx
-              .panel
-                h5 Pull
-              .panel
-                h5 Full-body
-              .panel
-                h5 Leg Day
-              .panel
-                h5 Yoga
-              .panel
-                h5 Swimming
-          .day.panel.panel-success.pull-left
-            .panel-heading
-              h5.panel-title Day 1
+              h5.panel-title Day {{$index + 1}}
             .panel-body
-              p Push
-          .day.panel.panel-success.pull-left
-            .panel-heading
-              h5.panel-title Day 2
-            .panel-body
-              p Pull
-          .day.panel.panel-success.pull-left
-            .panel-heading
-              h5.panel-title Day 3
-            .panel-body
-              p Legs
-          .day.panel.panel-success.pull-left
-            .panel-heading
-              h5.panel-title Day 4
-            .panel-body
-              p Push
-          .day.panel.panel-success.pull-left
-            .panel-heading
-              h5.panel-title Day 5
-            .panel-body
-              p Pull
-          .day.panel.panel-success.pull-left
-            .panel-heading
-              h5.panel-title Day 6
-            .panel-body
-              p Legs
-          .day.panel.panel-success.pull-left
-            .panel-heading
-              h5.panel-title Day 7
-            .panel-body
-              p Rest
+              select(ng-model="prog.program.days[$index]").form-control
+                option(ng-repeat="work in prog.workouts" value="{{work._id}}") {{work.name}}
+          //- .day.panel.panel-success.pull-left
+          //-   .panel-heading
+          //-     h5.panel-title Day 2
+          //-   .panel-body
+          //-     p Pull
+          //- .day.panel.panel-success.pull-left
+          //-   .panel-heading
+          //-     h5.panel-title Day 3
+          //-   .panel-body
+          //-     p Legs
+          //- .day.panel.panel-success.pull-left
+          //-   .panel-heading
+          //-     h5.panel-title Day 4
+          //-   .panel-body
+          //-     p Push
+          //- .day.panel.panel-success.pull-left
+          //-   .panel-heading
+          //-     h5.panel-title Day 5
+          //-   .panel-body
+          //-     p Pull
+          //- .day.panel.panel-success.pull-left
+          //-   .panel-heading
+          //-     h5.panel-title Day 6
+          //-   .panel-body
+          //-     p Legs
+          //- .day.panel.panel-success.pull-left
+          //-   .panel-heading
+          //-     h5.panel-title Day 7
+          //-   .panel-body
+          //-     p Rest
     .row
-      button.btn.btn-warning.btn-block Create Program
+      button(ng-click="prog.submit()").btn.btn-warning.btn-block Create Program

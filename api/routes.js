@@ -10,4 +10,8 @@ router.get('/exercises', exerCtrl.search)
 
 router.post('/workout', wrkCtrl.save)
 
+router.get('/workouts', wrkCtrl.findAll)
+
+router.post('/programs', wrkCtrl.saveProg)
+
 module.exports = router;

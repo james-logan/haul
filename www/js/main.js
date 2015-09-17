@@ -48,3 +48,28 @@ angular
   .controller('registerController', function ($scope) {
     console.log('register controller instantiated')
   })
+  .controller('createProgramController', function ($scope, $http) {
+    var vm = this;
+    vm.workouts = [];
+    vm.cycle = 7;
+    vm.program = {
+      name: "",
+      days: []
+    }
+    vm.days = function () {
+      return new Array(vm.cycle)
+    }
+    vm.submit = function () {
+      $http
+        .post('/api/programs', vm.program)
+        .success(function (data) {
+          console.log('it worked')
+        })
+    }
+    $http
+      .get('/api/workouts')
+      .success(function (data) {
+        vm.workouts = data;
+      })
+
+  })

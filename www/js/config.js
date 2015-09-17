@@ -25,8 +25,8 @@ angular
       })
       .when('/bridge/programs', {
         templateUrl: '/programs',
-        controller: 'mainControlBridge',
-        controllerAs: 'bridge'
+        controller: 'createProgramController',
+        controllerAs: 'prog'
       })
       .when('/bridge/select', {
         templateUrl: '/select',
