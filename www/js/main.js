@@ -1,5 +1,5 @@
 angular
-  .module('haul', ['ngRoute'])
+  .module('haul', ['ngRoute', 'ngCookies'])
   .controller('mainControlBridge', function ($scope, $http) {
     console.log('controller instantiated')
     var vm = this;
@@ -42,8 +42,11 @@ angular
   .controller('frontPage', function ($scope) {
     console.log('front controller instantiated')
   })
-  .controller('loginController', function ($scope) {
-    console.log('login controller instantiated')
+  .controller('loginController', function ($scope, $window) {
+    var vm = this;
+    vm.hide = true;
+    console.log('login controller instantiated');
+
   })
   .controller('registerController', function ($scope) {
     console.log('register controller instantiated')

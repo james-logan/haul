@@ -49,8 +49,8 @@ var randomPort = getRandomInt(3000, 65536);
     },
     bower_concat: {
       main: {
-        dest: 'public/lib/build.js',
-        cssDest: 'public/lib/build.css',
+        dest: 'www/lib/build.js',
+        cssDest: 'www/lib/build.css',
         mainFiles: {
           bootstrap: 'dist/css/bootstrap.min.css'
         }
@@ -72,7 +72,7 @@ var randomPort = getRandomInt(3000, 65536);
         files: [
           {
             expand: true,
-            cwd: 'src/',
+            cwd: 'views/templates',
             src: [
               '**',
               '!**/*.jade',
@@ -80,7 +80,7 @@ var randomPort = getRandomInt(3000, 65536);
               '!**/*.js',
               '**/*.otf'
             ],
-            dest: 'public/',
+            dest: 'www/templates',
             filter: 'isFile'
           }
         ]
@@ -101,9 +101,9 @@ var randomPort = getRandomInt(3000, 65536);
         files: [
           {
             expand: true,
-            cwd: 'src/',
+            cwd: 'views/templates',
             src: ['**/*.jade', '!**/_*.jade'],
-            dest: 'public/',
+            dest: 'www/templates',
             ext: '.html'
           }
         ]
@@ -112,9 +112,9 @@ var randomPort = getRandomInt(3000, 65536);
         files: [
           {
             expand: true,
-            cwd: 'src/',
+            cwd: 'views/templates',
             src: ['**/*.jade', '!**/_*.jade'],
-            dest: 'public/',
+            dest: 'www/templates',
             ext: '.html'
           }
         ]

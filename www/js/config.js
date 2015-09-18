@@ -1,52 +1,74 @@
 angular
   .module('haul')
+  .run(function ($rootScope, $cookies, $location) {
+    $rootScope.$on('$routeChangeStart', function (event, nextRoute) {
+      console.log($cookies.get('user'))
+      $rootScope.auth = $cookies.get('user')
+
+      if (nextRoute.$$route && nextRoute.$$route['private'] && !$rootScope.auth) {
+        console.log('cats')
+        $location.path('/user/login')
+      }
+    });
+  })
   .config(function ($routeProvider) {
     console.log('config firing')
     $routeProvider
       .when('/', {
-        templateUrl: '/front',
+        templateUrl: 'templates/front.html',
         controller: 'frontPage',
         controllerAs: 'front'
       })
       .when('/bridge/newworkout', {
-        templateUrl: '/newworkout',
+        templateUrl: 'templates/newworkout.html',
         controller: 'mainControlBridge',
-        controllerAs: 'bridge'
+        controllerAs: 'bridge',
+        'private': true
       })
       .when('/bridge/stats', {
-        templateUrl: '/stats',
+        templateUrl: 'templates/stats.html',
         controller: 'mainControlBridge',
-        controllerAs: 'bridge'
+        controllerAs: 'bridge',
+        'private': true
       })
       .when('/bridge/schedule', {
-        templateUrl: '/schedule',
+        templateUrl: 'templates/schedule.html',
         controller: 'mainControlBridge',
-        controllerAs: 'bridge'
+        controllerAs: 'bridge',
+        'private': true
       })
       .when('/bridge/programs', {
-        templateUrl: '/programs',
+        templateUrl: 'templates/programs.html',
         controller: 'createProgramController',
-        controllerAs: 'prog'
+        controllerAs: 'prog',
+        'private': true
       })
       .when('/bridge/select', {
-        templateUrl: '/select',
+        templateUrl: 'templates/select.html',
         controller: 'selectController',
-        controllerAs: 'select'
+        controllerAs: 'select',
+        'private': true
       })
       .when('/bridge/complete/:id', {
-        templateUrl: '/complete',
+        templateUrl: 'templates/complete.html',
         controller: 'workOutCompletionController',
-        controllerAs: 'complete'
+        controllerAs: 'complete',
+        'private': true
       })
-      .when('/login', {
-        templateUrl: '/login',
+      .when('/user/login', {
+        templateUrl: 'templates/login.html',
         controller: 'loginController',
         controllerAs: 'login'
       })
       .when('/register', {
-        templateUrl: '/register',
+        templateUrl: 'templates/register.html',
         controller: 'registerController',
         controllerAs: 'register'
+      })
+      .when('/exercise', {
+        templateUrl: 'templates/exercise.html',
+        controller: 'loginController',
+        controllerAs: 'login'
       })
 
   })

@@ -15,4 +15,11 @@ Exercise.find = function (query, cb) {
   })
 }
 
+Exercise.insertOne = function (exerciseObj, cb) {
+  mongo.getDb().collection('exercises').insertOne(exerciseObj, function (err, data) {
+    if (err) throw err;
+    cb(err, data)
+  })
+}
+
 module.exports = Exercise;

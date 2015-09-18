@@ -6,9 +6,33 @@ var sass = require('node-sass-middleware');
 var bodyParser = require('body-parser');
 var routes = require('./routes/routes');
 var api = require('./api/routes');
+var secrets = require('./config/secrets');
+var session = require('express-session');
 
 //bringing in the database module
 var database = require('./lib/mongodb');
+
+//session middleware
+app.use(session({
+  secret: secrets.session,
+  resave: false,
+  saveUninitialized: true
+}))
+
+app.use(function (req, res, next) {
+  console.log(req.session)
+  next();
+})
+
+//setting the local user value for that response
+app.use(function getAuthStatus(req, res, next) {
+  if (req.session.user) {
+    res.locals.user = req.session.user;
+  } else {
+    res.locals.user = null;
+  }
+  next();
+})
 
 app.set('port', process.env.PORT || 3000);
 
@@ -24,11 +48,22 @@ app.use(sass({
 
 //makes the body available from post requests
 app.use(bodyParser.json());
-
+app.use(bodyParser.urlencoded({extended: false}))
 app.use(express.static('www'));
 
+// app.use('/user', require('./routes/user'))
+
+app.use(function (req, res, next) {
+  if (req.session.user) {
+    next();
+  } else {
+    res.redirect('/#/user/login')
+  }
+})
+
+
 app.use('/api', api);
-app.use('/', routes);
+// app.use('/', routes);
 
 
 database.connect(onDbConnect);

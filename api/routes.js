@@ -5,7 +5,7 @@ var wrkCtrl = require('./workoutcontroller.js');
 var exerCtrl = require('./exercisecontroller.js')
 
 
-
+router.post('/exercises', exerCtrl.add)
 router.get('/exercises', exerCtrl.search)
 
 router.get('/workout', wrkCtrl.findOne)

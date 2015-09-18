@@ -1,0 +1,9 @@
+extends ../bridge.jade
+block whatever
+  form(action="/api/exercises" method="POST")
+    input(type="text" placeholder="name" name="name")
+    input(type="text" placeholder="grouping" name="grouping")
+    input(type="text" placeholder="equipment" name="equipment")
+    input(type="submit")
+    //- input(type="text" placeholder="")
+
