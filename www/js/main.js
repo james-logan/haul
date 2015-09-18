@@ -42,14 +42,54 @@ angular
   .controller('frontPage', function ($scope) {
     console.log('front controller instantiated')
   })
-  .controller('loginController', function ($scope, $window) {
+  .controller('logoutController', function ($scope, $http, $location) {
+    console.log('logout controller instantiated')
+    $http
+      .post('/user/logout', {})
+      .success(function () {
+        console.log('logout successful')
+        $location.path('/user/login')
+      })
+  })
+  .controller('loginController', function ($scope, $http, $rootScope, $location) {
     var vm = this;
     vm.hide = true;
     console.log('login controller instantiated');
+    vm.info = {
+      username: "",
+      password: ""
+    }
+    vm.login = function () {
+      $http
+        .post('/user/login', vm.info)
+        .success(function(data) {
+          console.log(data)
+          $rootScope.userData = data;
+          $location.path('/bridge/newworkout')
+        })
+        .error(function(data) {
+          console.log(data)
+        })
 
+    }
   })
-  .controller('registerController', function ($scope) {
+  .controller('registerController', function ($scope, $http, $location) {
     console.log('register controller instantiated')
+    var vm = this;
+    vm.info = {
+      email: "",
+      sex: "",
+      age: "",
+      username: "",
+      password: ""
+    }
+    vm.register = function () {
+      $http
+        .post('/user/register', vm.info)
+        .success(function () {
+          $location.path('/bridge/newworkout');
+        })
+    }
   })
   .controller('workOutCompletionController', function ($scope, $http, $routeParams) {
     var vm = this;

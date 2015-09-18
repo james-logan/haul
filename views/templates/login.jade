@@ -9,13 +9,13 @@ block page
       .col-xs-10.col-xs-offset-1
         h1.page-header Login
         //- a(href="#/login" ng-click="login.signOut();") Sign out
-        form
+        form(ng-submit="login.login()")
           .form-group
             label(for="username") Username
-            input.form-control(type="text" placeholder="username" name="username")
+            input.form-control(type="text" placeholder="username" name="username" ng-model="login.info.username")
           .form-group
             label(for="password") Password
-            input.form-control(type="password" placeholder="password" name="password")
+            input.form-control(type="password" placeholder="password" name="password" ng-model="login.info.password")
           button.btn.btn-default(type="submit") Login
         //- div(class="g-signin2" data-onsuccess="onSignIn")
 

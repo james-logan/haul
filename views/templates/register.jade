@@ -5,27 +5,27 @@ block page
     .row
       .col-xs-10.col-xs-offset-1
         h1.page-header Register
-        form
+        form(ng-submit="register.register()")
           .form-group
             label(for="email") Email
-            input.form-control(type="email" placeholder="lifter@haul.com")
+            input.form-control(type="email" placeholder="lifter@haul.com" ng-model="register.info.email")
           .form-group
             label Sex
             .radio
               label
-                input.radio(type="radio")
+                input.radio(type="radio" ng-model="register.info.sex" value="male")
                 | Male
             .radio
               label
-                input.radio(type="radio")
+                input.radio(type="radio" ng-model="register.info.sex" value="female")
                 | Female
           .form-group
             label Age
-            input.form-control(type="number" min="0" max="110")
+            input.form-control(type="number" ng-model="register.info.age" min="0" max="110")
           .form-group
             label(for="username") Username
-            input.form-control(type="text" placeholder="username" name="username")
+            input.form-control(type="text" placeholder="username" name="username" ng-model="register.info.username")
           .form-group
             label(for="password") Password
-            input.form-control(type="password" placeholder="password" name="password")
+            input.form-control(type="password" placeholder="password" name="password" ng-model="register.info.password")
           button.btn.btn-default(type="submit") Register Your Account

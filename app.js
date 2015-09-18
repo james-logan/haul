@@ -20,13 +20,14 @@ app.use(session({
 }))
 
 app.use(function (req, res, next) {
-  console.log(req.session)
+  console.log('SESSION>>>>>>>>>>', req.session)
   next();
 })
 
 //setting the local user value for that response
 app.use(function getAuthStatus(req, res, next) {
   if (req.session.user) {
+    console.log(req.session.user)
     res.locals.user = req.session.user;
   } else {
     res.locals.user = null;
@@ -51,13 +52,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(express.static('www'));
 
-// app.use('/user', require('./routes/user'))
+app.use('/user', require('./routes/user'))
 
 app.use(function (req, res, next) {
   if (req.session.user) {
     next();
   } else {
-    res.redirect('/#/user/login')
+    res.send(403, {redirect: true})
   }
 })
 

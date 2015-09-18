@@ -1,16 +1,15 @@
 angular
   .module('haul')
-  .run(function ($rootScope, $cookies, $location) {
-    $rootScope.$on('$routeChangeStart', function (event, nextRoute) {
-      console.log($cookies.get('user'))
-      $rootScope.auth = $cookies.get('user')
+  // .run(function ($rootScope, $cookies, $location) {
+  //   $rootScope.$on('$routeChangeStart', function (event, nextRoute) {
+  //     console.log($cookies.getObject('user'))
+  //     $rootScope.auth = $cookies.get('user')
 
-      if (nextRoute.$$route && nextRoute.$$route['private'] && !$rootScope.auth) {
-        console.log('cats')
-        $location.path('/user/login')
-      }
-    });
-  })
+  //     if (nextRoute.$$route && nextRoute.$$route['private'] && !$rootScope.auth) {
+  //       $location.path('/user/login')
+  //     }
+  //   });
+  // })
   .config(function ($routeProvider) {
     console.log('config firing')
     $routeProvider
@@ -59,6 +58,11 @@ angular
         templateUrl: 'templates/login.html',
         controller: 'loginController',
         controllerAs: 'login'
+      })
+      .when('/user/logout', {
+        templateUrl: 'templates/logout.html',
+        controller: 'logoutController',
+        controllerAs: 'logout'
       })
       .when('/register', {
         templateUrl: 'templates/register.html',
