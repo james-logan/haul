@@ -1,8 +1,12 @@
 angular
   .module('haul', ['ngRoute', 'ngCookies'])
-  .controller('mainControlBridge', function ($scope, $http) {
+  .controller('mainControlBridge', function ($scope, $http, $location) {
     console.log('controller instantiated')
     var vm = this;
+
+    var href = $location.path()
+    console.log(href)
+    $('a[href="#' + href + '"]').parent().css('background-color', 'rgba(169, 169, 169, .5)')
 
     vm.results;
 
@@ -89,9 +93,13 @@ angular
         })
     }
   })
-  .controller('workOutCompletionController', function ($scope, $http, $routeParams) {
+  .controller('workOutCompletionController', function ($scope, $http, $location, $routeParams) {
     var vm = this;
     console.log('completions controller instantiated');
+
+    var href = $location.path()
+    console.log(href)
+    $('a[href="#/bridge/select"]').parent().css('background-color', 'rgba(169, 169, 169, .5)')
 
     vm.sets = function (exer) {
       return new Array(exer.sets)
@@ -103,17 +111,27 @@ angular
         vm.workout = data;
       })
   })
-  .controller('selectController', function ($scope, $http) {
+  .controller('selectController', function ($scope, $http, $location) {
     console.log('select Controller instantiated')
     var vm = this;
+
+    var href = $location.path()
+    console.log(href)
+    $('a[href="#' + href + '"]').parent().css('background-color', 'rgba(169, 169, 169, .5)')
+
     $http
       .get('/api/workouts')
       .success(function (data) {
         vm.workouts = data;
       })
   })
-  .controller('createProgramController', function ($scope, $http) {
+  .controller('createProgramController', function ($scope, $http, $location) {
     var vm = this;
+
+    var href = $location.path()
+    console.log(href)
+    $('a[href="#' + href + '"]').parent().css('background-color', 'rgba(169, 169, 169, .5)')
+
     vm.workouts = [];
     vm.cycle = 7;
     vm.program = {
@@ -136,8 +154,12 @@ angular
         vm.workouts = data;
       })
   })
-  .controller('statsController', function ($http) {
+  .controller('statsController', function ($http, $location) {
     var vm = this;
+    var href = $location.path()
+    console.log(href)
+    $('a[href="#' + href + '"]').parent().css('background-color', 'rgba(169, 169, 169, .5)')
+
     vm.info;
     $http
       .get('/user/stats')
