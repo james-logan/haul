@@ -1,24 +1,20 @@
 .container-fluid.big
       .row.big
-        .col-xs-3.bg-primary.big.menu
-                  .container-fluid
-                    .row
-                      h1.orbitron HAUL
-                      a(href="#/user/logout")
-                        button.btn.btn-warning Logout
-                      .col-xs-12
-                        h4 Menu
-                        .list-group
-                          a.list-group-item(href="#/bridge/stats") Stats
-                          a.list-group-item(href="#/bridge/schedule") Schedule
-                          a.list-group-item(href="#/bridge/newworkout") Create Workouts
-                          a.list-group-item(href="#/bridge/programs") Create Programs
-                          a.list-group-item(href="#/bridge/select") Complete A Workout
-                    .row
-                      .col-xs-12
-                        h4 Goals
-                        .row
-                          .col-xs-12
-                            h5 Goal Weight:
-                            h1.well.well-lg.goal-weight 150lbs
+        .col-xs-2.bg-primary.big.menu
+          .container-fluid
+            .row
+              h1.orbitron HAUL
+              a(href="#/user/logout")
+                button.btn.btn-warning.btn-sm.btn-block Logout
+              .pull-right.special-nav
+                .box
+                  a(href="#/bridge/stats") Stats
+                .box
+                  a(href="#/bridge/schedule") Schedule
+                .box
+                  a(href="#/bridge/newworkout") Create Workouts
+                .box
+                  a(href="#/bridge/programs") Create Programs
+                .box
+                  a(href="#/bridge/select") Complete A Workout
         block whatever

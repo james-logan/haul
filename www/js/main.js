@@ -111,7 +111,6 @@ angular
       .success(function (data) {
         vm.workouts = data;
       })
-
   })
   .controller('createProgramController', function ($scope, $http) {
     var vm = this;
@@ -136,5 +135,13 @@ angular
       .success(function (data) {
         vm.workouts = data;
       })
-
+  })
+  .controller('statsController', function ($http) {
+    var vm = this;
+    vm.info;
+    $http
+      .get('/user/stats')
+      .success(function (data) {
+        vm.info = data;
+      })
   })

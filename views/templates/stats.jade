@@ -1,3 +1,31 @@
 extends ../bridge.jade
 block whatever
-  h1 Stats
+  .col-xs-10.col-xs-offset-2
+    h1.page-title Schedule
+    table.table
+      tr
+        th
+          h2 Stat
+        th
+          h2 Current
+        th
+          h2 Goal
+      tr
+        th Age
+        td {{stat.info.age}}
+        td
+      tr
+        th Sex
+        td {{stat.info.sex}}
+        td
+      tr
+        th Weight
+        td {{stat.info.weight}}
+        td {{stat.info.goalWeight}}
+      tr(ng-repeat="goal in stat.info.goals")
+        th {{goal.name}}
+        //- goal.best will need to be calculated differently depending on the goal
+        td {{goal.best}}
+        td {{goal.goal}}
+
+

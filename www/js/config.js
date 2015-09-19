@@ -26,8 +26,8 @@ angular
       })
       .when('/bridge/stats', {
         templateUrl: 'templates/stats.html',
-        controller: 'mainControlBridge',
-        controllerAs: 'bridge',
+        controller: 'statsController',
+        controllerAs: 'stat',
         'private': true
       })
       .when('/bridge/schedule', {

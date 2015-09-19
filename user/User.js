@@ -1,5 +1,6 @@
 var bcrypt = require('bcrypt')
 var mongo = require('../lib/mongodb.js');
+var ObjectID = require('mongodb').ObjectID
 
 var User = function (u) {
   this.email = u.email
@@ -38,8 +39,17 @@ User.login = function (u, cb) {
   })
 }
 
-User.logout = function () {
-
+User.pull = function (id, cb) {
+  mongo.getDb().collection('users').findOne({"_id": ObjectID(id)}, function (err, data) {
+    if (err) {
+      cb(err, null)
+    } else {
+      var response = data;
+      response.hashedPassword = ""
+      response.email = ""
+      cb(null, response)
+    }
+  })
 }
 
 module.exports = User;

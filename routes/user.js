@@ -36,5 +36,15 @@ router.post('/logout', function (req, res) {
   })
 })
 
+router.get('/stats', function (req, res) {
+  User.pull(req.session.user._id, function (err, data) {
+    if (err) {
+      res.status(500).send(err)
+    } else {
+      res.send(data);
+    }
+  })
+})
+
 
 module.exports = router

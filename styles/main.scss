@@ -3,10 +3,33 @@
   src: url('../assets/VanBerger_Stencil.otf')  format('opentype');
 }
 
+.big {
+  height: 100%;
+}
+
 .menu {
-  background-color: rgb(0, 27, 55);
+  background-color: black;
   box-shadow: 0 0 10px black;
   color: white;
+  height: 650px;
+  position:fixed;
+}
+
+.special-nav {
+  margin-top: 20px;
+  margin-right: -14px;
+  .box {
+    padding: 10px;
+    vertical-align: middle;
+    height: 50px;
+    width: 200px;
+    // background-color: darkgray;
+    border-bottom: 1px solid darkgray;
+    border-top: 1px solid darkgray;
+    a {
+      color: white;
+    }
+  }
 }
 
 .squish {
@@ -18,9 +41,6 @@
 }
 .panel-body {
   max-height: 250px;
-}
-.list-group {
-  color: black;
 }
 
 .fat {
@@ -44,9 +64,7 @@
   border: 2px solid darken(darkgray, 10%);
 }
 
-.big {
-  min-height: 100%;
-}
+
 
 .goal-weight {
   color: black;
