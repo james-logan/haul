@@ -3,13 +3,21 @@ var exerciseModel = require('../exercise/Exercise');
 module.exports = {
   search: function (req, res) {
     exerciseModel.find(req.query.exer, function (err, data) {
-      res.send(data)
+      if (err) {
+        res.status(500).send(err)
+      } else {
+        res.send(data)
+      }
     })
   },
   add: function (req, res) {
     console.log(req.body)
     exerciseModel.insertOne(req.body, function (err, data) {
-      res.status(201)
+      if (err) {
+        res.status(500).send(err)
+      } else {
+        res.status(200).send("It worked")
+      }
     });
   }
 }

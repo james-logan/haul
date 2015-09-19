@@ -3,10 +3,13 @@ block content
   nav.navbar.navbar-inverse.navbar-fixed-top
     .container
       .navbar-header
-        a.navbar-brand
-          p.orbitron.brand HAUL
-      a.btn.navbar-right(href="#/login")
-        button.btn.btn-warning.navbar-btn Log In
-      a.btn.navbar-right(href="#/register")
-        button.btn.btn-warning.navbar-btn Sign Up
+        a(href="#/")
+          p.navbar-brand.brand.orbitron HAUL
+      .btn-group-sm
+        a.btn.btn-warning.navbar-right.navbar-btn(href="#/bridge/select") Bridge
+          //- button.btn.btn-warning.navbar-btn Bridge
+        a.btn.navbar-right.btn-warning.navbar-btn(href="#/user/login") Login
+          //- button.btn.btn-warning.navbar-btn Log In
+        a.btn.navbar-right.btn-warning.navbar-btn(href="#/register") Sign up
+          //- button.btn.btn-warning.navbar-btn Sign Up
   block page

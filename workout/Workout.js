@@ -15,9 +15,7 @@ Workout.saveNew = function (userObj, workoutObj, cb) {
   workoutObj.author = userObj.username;
   var workout = new Workout(workoutObj)
   console.log(workout)
-  mongo.getDb().collection('workouts').insertOne(workout, function (err, data) {
-    if (err) throw err;
-  })
+  mongo.getDb().collection('workouts').insertOne(workout, cb)
 }
 
 Workout.findAll = function (userObj, cb) {
@@ -36,11 +34,7 @@ Workout.saveProg = function (userObj, progObj, cb) {
   console.log('save program is running')
   progObj.author = userObj.username;
   progObj.authorid = userObj._id;
-  mongo.getDb().collection('programs').insertOne(progObj, function (err, data) {
-    if (err) throw err;
-    // cb(err, data)
-  })
-
+  mongo.getDb().collection('programs').insertOne(progObj, cb)
 }
 
 module.exports = Workout;

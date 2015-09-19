@@ -9,17 +9,11 @@ var Exercise = function (pojo) {
 }
 
 Exercise.find = function (query, cb) {
-  mongo.getDb().collection('exercises').find({"name": query}).toArray(function (err, items) {
-    if (err) throw err;
-    cb(err, items)
-  })
+  mongo.getDb().collection('exercises').find({"name": query}).toArray(cb)
 }
 
 Exercise.insertOne = function (exerciseObj, cb) {
-  mongo.getDb().collection('exercises').insertOne(exerciseObj, function (err, data) {
-    if (err) throw err;
-    cb(err, data)
-  })
+  mongo.getDb().collection('exercises').insertOne(exerciseObj, cb)
 }
 
 module.exports = Exercise;

@@ -32,6 +32,20 @@
     }
 }
 
+.big-title {
+  margin-top: 200px;
+}
+
+.front-content {
+  margin-bottom: 30px;
+}
+
+.foot {
+  background-color: black;
+  color: white;
+  padding: 10px;
+}
+
 .squish {
   margin-top: 10px;
 }
@@ -64,8 +78,6 @@
   border: 2px solid darken(darkgray, 10%);
 }
 
-
-
 .goal-weight {
   color: black;
 }
@@ -89,7 +101,7 @@
 }
 
 .banner2 {
-  height: 300px;
+  height: 350px;
   background-image: url(../assets/training-828741.jpg);
   background-attachment: fixed;
   background-size: 100%;
@@ -101,6 +113,14 @@
 
 .brand {
   font-size: 40px;
+  line-height: 36px;
+  padding: 10px;
+  margin: 0px;
+}
+
+.navbar-btn {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 nav {
