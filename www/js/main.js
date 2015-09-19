@@ -6,7 +6,7 @@ angular
 
     var href = $location.path()
     console.log(href)
-    $('a[href="#' + href + '"]').parent().css('background-color', 'rgba(169, 169, 169, .5)')
+    $('a[href="#' + href + '"]').children('.box').css('background-color', 'rgba(169, 169, 169, .5)')
 
     vm.results;
 
@@ -99,7 +99,7 @@ angular
 
     var href = $location.path()
     console.log(href)
-    $('a[href="#/bridge/select"]').parent().css('background-color', 'rgba(169, 169, 169, .5)')
+    $('a[href="#/bridge/select"]').children('.box').css('background-color', 'rgba(169, 169, 169, .5)')
 
     vm.sets = function (exer) {
       return new Array(exer.sets)
@@ -117,7 +117,7 @@ angular
 
     var href = $location.path()
     console.log(href)
-    $('a[href="#' + href + '"]').parent().css('background-color', 'rgba(169, 169, 169, .5)')
+    $('a[href="#' + href + '"]').children('.box').css('background-color', 'rgba(169, 169, 169, .5)')
 
     $http
       .get('/api/workouts')
@@ -130,7 +130,7 @@ angular
 
     var href = $location.path()
     console.log(href)
-    $('a[href="#' + href + '"]').parent().css('background-color', 'rgba(169, 169, 169, .5)')
+    $('a[href="#' + href + '"]').children('.box').css('background-color', 'rgba(169, 169, 169, .5)')
 
     vm.workouts = [];
     vm.cycle = 7;
@@ -158,7 +158,7 @@ angular
     var vm = this;
     var href = $location.path()
     console.log(href)
-    $('a[href="#' + href + '"]').parent().css('background-color', 'rgba(169, 169, 169, .5)')
+    $('a[href="#' + href + '"]').children('.box').css('background-color', 'rgba(169, 169, 169, .5)')
 
     vm.info;
     $http
