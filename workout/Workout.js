@@ -9,9 +9,10 @@ var Workout = function (pojo) {
   this.authorid = pojo.authorid;
 }
 
-
-Workout.saveNew = function (workoutObj, cb) {
+Workout.saveNew = function (userObj, workoutObj, cb) {
   console.log(workoutObj)
+  workoutObj.authorid = userObj._id;
+  workoutObj.author = userObj.username;
   var workout = new Workout(workoutObj)
   console.log(workout)
   mongo.getDb().collection('workouts').insertOne(workout, function (err, data) {
@@ -19,8 +20,8 @@ Workout.saveNew = function (workoutObj, cb) {
   })
 }
 
-Workout.findAll = function (cb) {
-  mongo.getDb().collection('workouts').find().toArray(function (err, data) {
+Workout.findAll = function (userObj, cb) {
+  mongo.getDb().collection('workouts').find({"authorid": userObj._id}).toArray(function (err, data) {
     cb(err, data);
   })
 }
@@ -31,8 +32,10 @@ Workout.findOne = function (id, cb) {
   })
 }
 
-Workout.saveProg = function (progObj, cb) {
+Workout.saveProg = function (userObj, progObj, cb) {
   console.log('save program is running')
+  progObj.author = userObj.username;
+  progObj.authorid = userObj._id;
   mongo.getDb().collection('programs').insertOne(progObj, function (err, data) {
     if (err) throw err;
     // cb(err, data)
