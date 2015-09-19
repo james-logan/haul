@@ -53,7 +53,6 @@ angular
   })
   .controller('loginController', function ($scope, $http, $rootScope, $location) {
     var vm = this;
-    vm.hide = true;
     console.log('login controller instantiated');
     vm.info = {
       username: "",
@@ -70,7 +69,6 @@ angular
         .error(function(data) {
           console.log(data)
         })
-
     }
   })
   .controller('registerController', function ($scope, $http, $location) {

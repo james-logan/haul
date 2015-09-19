@@ -1,3 +1,78 @@
-@font-face{font-family:'VanBerg';src:url("../assets/VanBerger_Stencil.otf") format("opentype")}.menu{background-color:#001b37;box-shadow:0 0 10px #000;color:white}.squish{margin-top:10px}.panel-heading{padding:3px 15px}.panel-body{max-height:250px}.list-group{color:black}.fat li>button{width:100%}.orbitron{font-family:"VanBerg";font-weight:900;font-size:65px}.btn-trans{background:transparent;border:2px solid #8f8f8f}.big{min-height:100%}.goal-weight{color:black}.overflow-scroll{overflow-y:scroll}.banner{height:500px;background-image:url(../assets/training-601214.jpg);background-attachment:fixed;background-size:100%}.banner h1{margin-right:50px;font-size:100px;color:white}.banner2{height:300px;background-image:url(../assets/training-828741.jpg);background-attachment:fixed;background-size:100%}.intro{font-size:20px}.brand{font-size:40px}nav a{margin-left:5px}.exercise-block button{margin-left:10px}.day{width:14%}
+@font-face {
+  font-family: 'VanBerg';
+  src: url("../assets/VanBerger_Stencil.otf") format("opentype"); }
 
-/*# sourceMappingURL=main.css.map */
+.menu {
+  background-color: #001b37;
+  box-shadow: 0 0 10px black;
+  color: white; }
+
+.squish {
+  margin-top: 10px; }
+
+.panel-heading {
+  padding: 3px 15px; }
+
+.panel-body {
+  max-height: 250px; }
+
+.list-group {
+  color: black; }
+
+.fat li > button {
+  width: 100%;
+  /*border-radius: 5px;*/ }
+
+.orbitron {
+  font-family: "VanBerg";
+  /*font-family: Orbitron;*/
+  font-weight: 900;
+  /*color: rgb(255, 204, 0);*/
+  font-size: 65px;
+  /*text-shadow: 0 0 5px rgb(235, 184, 0);*/ }
+
+.btn-trans {
+  background: transparent;
+  border: 2px solid #8f8f8f; }
+
+.big {
+  min-height: 100%; }
+
+.goal-weight {
+  color: black; }
+
+.overflow-scroll {
+  overflow-y: scroll; }
+
+.banner {
+  height: 500px;
+  background-image: url(../assets/training-601214.jpg);
+  background-attachment: fixed;
+  background-size: 100%; }
+  .banner h1 {
+    margin-right: 50px;
+    font-size: 100px;
+    color: white; }
+
+.banner2 {
+  height: 300px;
+  background-image: url(../assets/training-828741.jpg);
+  background-attachment: fixed;
+  background-size: 100%; }
+
+.intro {
+  font-size: 20px; }
+
+.brand {
+  font-size: 40px; }
+
+nav a {
+  margin-left: 5px; }
+
+.exercise-block button {
+  margin-left: 10px; }
+
+.day {
+  width: 14%; }
+
+/*# sourceMappingURL=data:application/json;base64,ewoJInZlcnNpb24iOiAzLAoJImZpbGUiOiAibWFpbi5jc3MiLAoJInNvdXJjZXMiOiBbCgkJIi4uLy4uL3N0eWxlcy9tYWluLnNjc3MiCgldLAoJInNvdXJjZXNDb250ZW50IjogW10sCgkibWFwcGluZ3MiOiAiQUFBQSxVQUFVO0VBQ1IsV0FBVyxFQUFFLFNBQVU7RUFDdkIsR0FBRyxFQUFFLHNDQUFHLENBQXFDLGtCQUFNOztBQUdyRCxLQUFLLENBQUM7RUFDSixnQkFBZ0IsRUFBRSxPQUFHO0VBQ3JCLFVBQVUsRUFBRSxDQUFDLENBQUMsQ0FBQyxDQUFDLElBQUksQ0FBQyxLQUFLO0VBQzFCLEtBQUssRUFBRSxLQUFNLEdBSFI7O0FBTVAsT0FBTyxDQUFDO0VBQ04sVUFBVSxFQUFFLElBQUssR0FEVjs7QUFJVCxjQUFjLENBQUM7RUFDYixPQUFPLEVBQUUsR0FBRyxDQUFDLElBQUksR0FESDs7QUFHaEIsV0FBVyxDQUFDO0VBQ1YsVUFBVSxFQUFFLEtBQU0sR0FEUDs7QUFHYixXQUFXLENBQUM7RUFDVixLQUFLLEVBQUUsS0FBTSxHQURGOztBQUtOLElBQUksQ0FBQyxFQUFFLEdBQUcsTUFBTSxDQUFUO0VBQ1YsS0FBSyxFQUFFLElBQUs7RUFDWix1QkFBdUIsRUFGWjs7QUFNZixTQUFTLENBQUM7RUFDUixXQUFXLEVBQUUsU0FBVTtFQUN2QiwwQkFBMEI7RUFDMUIsV0FBVyxFQUFFLEdBQUk7RUFDakIsNEJBQTRCO0VBQzVCLFNBQVMsRUFBRSxJQUFLO0VBQ2hCLDBDQUEwQyxFQU5qQzs7QUFTWCxVQUFVLENBQUM7RUFDVCxVQUFVLEVBQUUsV0FBWTtFQUN4QixNQUFNLEVBQUUsR0FBRyxDQUFDLEtBQUssQ0FBQyxPQUFNLEdBRmQ7O0FBS1osSUFBSSxDQUFDO0VBQ0gsVUFBVSxFQUFFLElBQUssR0FEYjs7QUFJTixZQUFZLENBQUM7RUFDWCxLQUFLLEVBQUUsS0FBTSxHQUREOztBQUlkLGdCQUFnQixDQUFDO0VBQ2YsVUFBVSxFQUFFLE1BQU8sR0FESDs7QUFNbEIsT0FBTyxDQUFDO0VBQ04sTUFBTSxFQUFFLEtBQU07RUFDZCxnQkFBZ0IsRUFBRSxrQ0FBRztFQUNyQixxQkFBcUIsRUFBRSxLQUFNO0VBQzdCLGVBQWUsRUFBRSxJQUFLLEdBSmY7RUFLUCxPQUFPLENBQUMsRUFBRSxDQUFQO0lBQ0QsWUFBWSxFQUFFLElBQUs7SUFDbkIsU0FBUyxFQUFFLEtBQU07SUFDakIsS0FBSyxFQUFFLEtBQU0sR0FIWDs7QUFPTixRQUFRLENBQUM7RUFDUCxNQUFNLEVBQUUsS0FBTTtFQUNkLGdCQUFnQixFQUFFLGtDQUFHO0VBQ3JCLHFCQUFxQixFQUFFLEtBQU07RUFDN0IsZUFBZSxFQUFFLElBQUssR0FKZDs7QUFPVixNQUFNLENBQUM7RUFDTCxTQUFTLEVBQUUsSUFBSyxHQURWOztBQUlSLE1BQU0sQ0FBQztFQUNMLFNBQVMsRUFBRSxJQUFLLEdBRFY7O0FBS04sR0FBRyxDQUFDLENBQUMsQ0FBSDtFQUNBLFdBQVcsRUFBRSxHQUFJLEdBRGhCOztBQVlILGVBQWUsQ0FBQyxNQUFNLENBQWY7RUFDTCxXQUFXLEVBQUUsSUFBSyxHQURaOztBQUtWLElBQUksQ0FBQztFQUNILEtBQUssRUFBRSxHQUFJLEdBRFAiLAoJIm5hbWVzIjogW10KfQ== */

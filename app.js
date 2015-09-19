@@ -43,7 +43,7 @@ app.use(sass({
   outputStyle: 'compressed',
   prefix: '/css',
   sourceMap: app.get('env') === 'production' ? 'false' : true,
-  src: 'styles',
+  src: '../styles',
   force: true
 }));
 

@@ -13,38 +13,7 @@ var randomPort = getRandomInt(3000, 65536);
     autoprefixer: {
       main: {
         options: ['>1% in US'],
-        src: 'public/css/main.css'
-      }
-    },
-    'gh-pages': {
-        options: {
-          base: 'public'
-        },
-        src: '**/*'
-    },
-    babel: {
-      dev: {
-        options: {
-          sourceMap: 'inline'
-        },
-        files: [
-          {
-            expand: true,
-            cwd: 'src/',
-            src: ['**/*.js'],
-            dest: 'public/'
-          }
-        ]
-      },
-      prod: {
-        files: [
-          {
-            expand: true,
-            cwd: 'src/',
-            src: ['**/*.js'],
-            dest: 'public/'
-          }
-        ]
+        src: 'www/css/main.css'
       }
     },
     bower_concat: {
@@ -54,36 +23,6 @@ var randomPort = getRandomInt(3000, 65536);
         mainFiles: {
           bootstrap: 'dist/css/bootstrap.min.css'
         }
-      }
-    },
-    clean: ['public'],
-    connect: {
-      main: {
-        options: {
-          port: randomPort,
-          base: 'public/',
-          open: true,
-          livereload: true
-        }
-      }
-    },
-    copy: {
-      main: {
-        files: [
-          {
-            expand: true,
-            cwd: 'views/templates',
-            src: [
-              '**',
-              '!**/*.jade',
-              '!**/*.scss',
-              '!**/*.js',
-              '**/*.otf'
-            ],
-            dest: 'www/templates',
-            filter: 'isFile'
-          }
-        ]
       }
     },
     cssmin: {
@@ -126,7 +65,7 @@ var randomPort = getRandomInt(3000, 65536);
           outputStyle: 'compressed'
         },
         files: {
-          'public/css/main.css': 'src/_styles/main.scss'
+          'www/css/main.css': 'styles/main.scss'
         }
       },
       dev: {
@@ -135,25 +74,13 @@ var randomPort = getRandomInt(3000, 65536);
           sourceMapEmbed: true
         },
         files: {
-          'public/css/main.css': 'src/_styles/main.scss'
+          'www/css/main.css': 'styles/main.scss'
         }
       }
     },
-    uglify: {
-      bower: {
-        files: {
-          'public/lib/build.js': 'public/lib/build.js'
-        }
-      },
-      main: {
-        files: [
-          {
-            expand: true,
-            cwd: 'public/',
-            src: ['**/*.js'],
-            dest: 'public/'
-          }
-        ]
+    nodemon: {
+      dev: {
+        script: 'app.js'
       }
     },
     watch: {
@@ -163,51 +90,38 @@ var randomPort = getRandomInt(3000, 65536);
         },
 
         files: [
-          'public/css/main.css',
-          'public/js/**/*.js',
-          'public/**/*.html'
+          'styles/main.css',
+          '**/*.js',
+          '**/*.html'
         ]
       },
       jade: {
-        files: ['src/**/*.jade'],
+        files: ['views/**/*.jade'],
         tasks: ['jade:dev']
       },
       sass: {
-        files: ['src/**/*.scss'],
+        files: ['styles/**/*.scss'],
         tasks: ['sass:dev', 'autoprefixer']
-      },
-      js: {
-        files: ['src/js/**/*.js'],
-        tasks: ['babel:dev']
       }
-
     }
   });
 
   grunt.registerTask('default', []);
   grunt.registerTask('build', [
-    'clean',
-    'copy',
-    'babel:prod',
     'bower_concat',
     'jade:prod',
     'sass:prod',
-    'autoprefixer',
-    'uglify'
+    'autoprefixer'
   ]);
   grunt.registerTask('build-dev', [
-    'clean',
-    'copy',
-    'babel:dev',
     'bower_concat',
     'jade:dev',
     'sass:dev',
-    'autoprefixer'
   ]);
 
   grunt.registerTask('serve', [
     'build-dev',
-    'connect',
+    'nodemon:dev',
     'watch'
   ]);
 
