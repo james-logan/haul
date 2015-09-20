@@ -40,7 +40,34 @@ Workout.saveProg = function (userObj, progObj, cb) {
 Workout.findCompleted = function (userObj, compWork, cb) {
   console.log('cat master')
   console.log(compWork)
+  compWork.workoutId = compWork._id;
+  compWork.date = new Date();
+  delete compWork._id;
   mongo.getDb().collection('completed').updateOne({userId: userObj._id}, {$push: {completed: compWork}}, {upsert: true}, cb)
+}
+
+Workout.pullCompleted = function (userObj, cb) {
+  mongo.getDb().collection('completed').findOne({userId: userObj._id}, function (err, past) {
+    Workout.scheduler(err, past, cb)
+  })
+}
+
+Workout.scheduler = function (err, past, cb) {
+  console.log(past)
+  if (past) {
+    var parcel = {
+      color: "black",
+      textColor: "yellow"
+    }
+    parcel.events = past.completed.map(function (wo) {
+      wo.title = wo.name
+      wo.start = wo.date
+      return wo
+    })
+    cb(null, parcel)
+  } else {
+    cb(err, null)
+  }
 }
 
 module.exports = Workout;

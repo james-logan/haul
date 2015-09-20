@@ -154,3 +154,8 @@ nav {
   }
 }
 
+button[disabled="disabled"] {
+  background-color: darkgray !important;
+  color: black !important;
+}
+

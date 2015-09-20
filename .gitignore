@@ -31,4 +31,7 @@ config/secrets.js
 www/lib/build.js
 www/lib/build.css
 www/templates
+www/css
+trash
+
 

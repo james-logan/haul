@@ -22,7 +22,7 @@ block whatever
           .col-xs-6
             div.btn-group-vertical(ng-repeat="set in exer.sets track by $index")
               button.btn.btn-danger.btn-xs(ng-click="set.upTick()") +
-              button(ng-click="set.complete()").btn.btn-warning {{set.reps}}
+              button(ng-click="set.complete()" ng-disabled="set.completionStatus").btn.btn-warning {{set.reps}}
               button.btn.btn-danger.btn-xs(ng-click="set.downTick()") -
       .col-xs-12
         form(ng-submit="complete.completeWorkout()")

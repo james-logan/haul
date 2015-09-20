@@ -32,8 +32,8 @@ angular
       })
       .when('/bridge/schedule', {
         templateUrl: 'templates/schedule.html',
-        controller: 'mainControlBridge',
-        controllerAs: 'bridge',
+        controller: 'scheduleController',
+        controllerAs: 'sched',
         'private': true
       })
       .when('/bridge/programs', {

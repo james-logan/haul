@@ -17,4 +17,6 @@ router.post('/programs', wrkCtrl.saveProg)
 
 router.post('/complete', wrkCtrl.finish)
 
+router.get('/schedule', wrkCtrl.grab)
+
 module.exports = router;

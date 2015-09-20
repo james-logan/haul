@@ -1,5 +1,5 @@
 angular
-  .module('haul', ['ngRoute', 'ngCookies'])
+  .module('haul', ['ngRoute', 'ngCookies', 'ui.calendar'])
   .controller('mainControlBridge', function ($scope, $http, $location) {
     console.log('controller instantiated')
     var vm = this;
@@ -212,4 +212,31 @@ angular
       .success(function (data) {
         vm.info = data;
       })
+  })
+  .controller('scheduleController', function ($scope, $http) {
+    var vm = this;
+    vm.eventSources = [];
+
+    $scope.uiConfig = {
+      calendar:{
+        height: 450,
+        editable: true,
+        header:{
+          left: 'month basicWeek basicDay',
+          center: 'title',
+          right: 'today prev,next'
+        },
+        dayClick: $scope.alertEventOnClick,
+        eventDrop: $scope.alertOnDrop,
+        eventResize: $scope.alertOnResize
+      }
+    };
+
+    $http
+      .get('/api/schedule')
+      .then(function (data) {
+        console.log(data);
+        vm.eventSources.push(data.data);
+      })
+
   })

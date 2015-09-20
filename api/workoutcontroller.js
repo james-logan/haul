@@ -40,5 +40,14 @@ module.exports = {
         res.status(200).send("Workout saved!")
       }
     })
+  },
+  grab: function (req, res) {
+    workOutModel.pullCompleted(req.session.user, function (err, data) {
+      if (err) {
+        res.status(500).send(err)
+      } else {
+        res.status(200).send(data)
+      }
+    })
   }
 }
