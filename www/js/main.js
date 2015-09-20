@@ -98,18 +98,64 @@ angular
     console.log('completions controller instantiated');
 
     var href = $location.path()
-    console.log(href)
     $('a[href="#/bridge/select"]').children('.box').css('background-color', 'rgba(169, 169, 169, .5)')
 
-    vm.sets = function (exer) {
-      return new Array(exer.sets)
+    vm.setExpander = function (workout) {
+      workout.exercises = workout.exercises.map(function (exer) {
+        var array = [];
+        var setObj = function (reps) {
+          this.reps = reps;
+          this.completionStatus = false;
+          this.upTick = function () {
+            this.reps++
+          };
+          this.downTick = function () {
+            this.reps--
+          }
+          this.complete = function () {
+            this.completionStatus = true;
+          }
+
+        }
+        while (array.length < exer.sets) {
+          var insert = new setObj(exer.reps)
+          array.push(insert)
+        }
+        exer.sets = array;
+        return exer
+      })
+      return workout
     }
 
     $http
       .get('/api/workout?id=' + $routeParams.id)
       .success(function (data) {
-        vm.workout = data;
+        vm.workout = vm.setExpander(data)
       })
+
+    vm.truncate = function (compWork) {
+      compWork.exercises = compWork.exercises.map(function (exer) {
+        exer.sets = exer.sets.map(function (set) {
+          if (set.completionStatus === true) {
+            set = set.reps;
+          } else {
+            set = 0;
+          }
+          return set
+        })
+        return exer
+      })
+      return compWork
+    }
+
+    vm.completeWorkout = function () {
+      var parcel = vm.truncate(vm.workout);
+      $http
+        .post('/api/complete', parcel)
+        .success(function(data) {
+          $location.path('/bridge/schedule')
+        })
+    }
   })
   .controller('selectController', function ($scope, $http, $location) {
     console.log('select Controller instantiated')

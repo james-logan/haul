@@ -30,5 +30,15 @@ module.exports = {
       if (err) throw err;
       res.send(data)
     })
+  },
+  finish: function (req, res) {
+    console.log(req.body)
+    workOutModel.findCompleted(req.session.user, req.body, function (err, data) {
+      if (err) {
+        res.status(500).send(err)
+      } else {
+        res.status(200).send("Workout saved!")
+      }
+    })
   }
 }

@@ -136,12 +136,21 @@ nav {
 //complete page styles
 
 .exercise-block {
-  button {
-    margin-left: 10px;
+  .btn-group-vertical {
+    margin: 5px 3px;
   }
 }
 
 .day {
   width: 14%;
+}
+
+.weight {
+  height: 86px;
+  display: flex;
+  align-items: center;
+  * {
+    display: inline;
+  }
 }
 

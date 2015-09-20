@@ -37,5 +37,11 @@ Workout.saveProg = function (userObj, progObj, cb) {
   mongo.getDb().collection('programs').insertOne(progObj, cb)
 }
 
+Workout.findCompleted = function (userObj, compWork, cb) {
+  console.log('cat master')
+  console.log(compWork)
+  mongo.getDb().collection('completed').updateOne({userId: userObj._id}, {$push: {completed: compWork}}, {upsert: true}, cb)
+}
+
 module.exports = Workout;
 
