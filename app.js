@@ -4,7 +4,6 @@ var app = express();
 var sass = require('node-sass-middleware');
 
 var bodyParser = require('body-parser');
-var routes = require('./routes/routes');
 var api = require('./api/routes');
 var secrets = require('./config/secrets');
 var session = require('express-session');

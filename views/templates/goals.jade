@@ -1,0 +1,42 @@
+extends ../bridge.jade
+block whatever
+  .col-xs-10.col-xs-offset-2
+    .row
+      .col-xs-12
+        h1.page-title Adopt a Program and Set Goals
+      .col-xs-6
+        h4 Current Program: Prog Name
+        .panel.panel-primary
+          .panel-heading
+            .panel-title My Programs
+          .panel-body.overflow-scroll
+            div
+              h5.pull-left Program Name
+              button(ng-click="").btn.btn-success.pull-right +
+        .panel.panel-primary
+          .panel-heading
+            .panel-title Exercises Available
+          .panel-body.overflow-scroll
+            div
+              h5.pull-left Exercise Name
+              button(ng-click="").btn.btn-success.pull-right +
+      .col-xs-6
+        h3 Current Goals
+        table.table
+          tr
+            th Weight
+            td Maintain
+          tr
+            th Lat Pull Downs
+            td 70 lbs
+          tr
+            th Squats
+            td 300 lbs
+          tr
+            th Deadlift
+            td 400lbs
+          tr
+            th Bench Press
+            td 225 lbs
+
+

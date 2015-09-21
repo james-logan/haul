@@ -74,5 +74,10 @@ angular
         controller: 'loginController',
         controllerAs: 'login'
       })
+      .when('/bridge/goals', {
+        templateUrl: 'templates/goals.html',
+        controller: 'goalController',
+        controllerAs: 'goal'
+      })
 
   })

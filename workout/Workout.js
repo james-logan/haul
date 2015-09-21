@@ -57,11 +57,12 @@ Workout.scheduler = function (err, past, cb) {
   if (past) {
     var parcel = {
       color: "black",
-      textColor: "yellow"
+      textColor: "yellow",
+      allDayDefault: true
     }
     parcel.events = past.completed.map(function (wo) {
       wo.title = wo.name
-      wo.start = wo.date
+      wo.start = wo.date.toLocaleDateString('en-US')
       return wo
     })
     cb(null, parcel)
