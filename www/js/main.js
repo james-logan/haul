@@ -242,7 +242,8 @@ angular
   .controller('goalController', function ($scope, $http) {
     var vm = this;
     vm.programs;
-    vm.goals;
+    vm.goals = {};
+    vm.goalWeight = {};
     vm.program;
     vm.exercises;
     $http
@@ -257,8 +258,12 @@ angular
     //     vm.program = data.data.program;
     //   })
 
-    vm.addGoal = function () {
-
+    vm.addGoal = function (exer) {
+      var goalExer = {
+        name: exer.name,
+        _id: exer._id
+      }
+      vm.goals[exer.name] = goalExer;
     }
 
     vm.postGoals = function () {
@@ -285,10 +290,9 @@ angular
           workArr.push(day.exercises);
         }
       })
-      console.log(workArr)
       workArr = _.flatten(workArr)
-      console.log(workArr)
       var retArr = _.uniq(workArr, false, "_id")
       vm.exercises = retArr;
     }
+
   })

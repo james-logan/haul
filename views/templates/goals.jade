@@ -19,15 +19,19 @@ block whatever
           .panel-body.overflow-scroll
             div.clearfix(ng-repeat="exer in goal.exercises")
               h5.pull-left {{exer.name}}
-              button(ng-click="goal.addGoal()").btn.btn-success.pull-right +
+              button(ng-click="goal.addGoal(exer)").btn.btn-success.pull-right +
       .col-xs-6
         h3 Current Goals
         table.table
-          tr(ng-repeat="goal in goal.goals")
-            th {{goal.name}}
-            td {{goal.number}}
           tr
-            th
+            th Weight
+            td
+              input(type="number" min="0" ng-model="goal.goalWeight")
+          tr(ng-repeat="(key, goal) in goal.goals")
+            th {{goal.name}}
+            td
+              input(type="number" min="0" ng-model="goal.number")
+          tr
             td
               button.btn.btn-success.btn-block(ng-click="goal.postGoals()") Save Goals
 
