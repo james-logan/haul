@@ -1,5 +1,9 @@
 angular
   .module('haul', ['ngRoute', 'ngCookies', 'ui.calendar'])
+  .run(function ($rootScope) {
+
+    $rootScope.day = $rootScope.day
+  })
   .controller('mainControlBridge', function ($scope, $http, $location) {
     console.log('controller instantiated')
     var vm = this;
@@ -93,9 +97,10 @@ angular
         })
     }
   })
-  .controller('workOutCompletionController', function ($scope, $http, $location, $routeParams) {
+  .controller('workOutCompletionController', function ($scope, $http, $location, $routeParams, $window) {
     var vm = this;
     console.log('completions controller instantiated');
+    vm.day = $window.sessionStorage.day
 
     var href = $location.path()
     $('a[href="#/bridge/select"]').children('.box').css('background-color', 'rgba(169, 169, 169, .5)')
@@ -150,6 +155,7 @@ angular
 
     vm.completeWorkout = function () {
       var parcel = vm.truncate(vm.workout);
+      parcel.progDay = vm.day;
       $http
         .post('/api/complete', parcel)
         .success(function(data) {
@@ -157,19 +163,49 @@ angular
         })
     }
   })
-  .controller('selectController', function ($scope, $http, $location) {
+  .controller('selectController', function ($scope, $http, $location, $window) {
     console.log('select Controller instantiated')
     var vm = this;
+    vm.today;
 
     var href = $location.path()
     console.log(href)
     $('a[href="#' + href + '"]').children('.box').css('background-color', 'rgba(169, 169, 169, .5)')
-
+    $http
+      .get('/api/completed')
+      .then(function (data) {
+        var day
+        console.log(data.data)
+        data.data.completed.reverse().some(function (item, i) {
+          if (item.progCount) {
+            day = item.progCount
+            return false;
+          }
+        })
+        day = day || -1;
+        vm.getProgram(day);
+      })
     $http
       .get('/api/workouts')
       .success(function (data) {
         vm.workouts = data;
       })
+
+    vm.getProgram = function (day) {
+      $http
+        .get('/api/goals')
+        .then(function (data) {
+          var programDays = data.data.program.days
+          if (day === programDays.length) {
+            day = 0;
+          }
+          else if (day) {
+            day ++
+          }
+          $window.sessionStorage.day = day;
+          vm.today = programDays[day]
+        })
+    }
   })
   .controller('createProgramController', function ($scope, $http, $location) {
     var vm = this;
@@ -237,7 +273,22 @@ angular
       .then(function (data) {
         console.log(data);
         vm.eventSources.push(data.data);
+        vm.getGoals(data.data)
       })
+
+    vm.getGoals = function (pastWorkouts) {
+      $http
+        .get('/api/goals')
+        .then(function (data) {
+          //do shit with data
+          console.log(data);
+          vm.createFuture(pastWorkouts, data)
+        })
+    }
+
+    vm.createFuture = function (pastWorkouts, goalsObj) {
+
+    }
   })
   .controller('goalController', function ($scope, $http) {
     var vm = this;

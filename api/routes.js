@@ -24,6 +24,8 @@ router.get('/goals', wrkCtrl.getGoals)
 router.post('/goals/program', wrkCtrl.adopt)
 router.post('/goals/goals', wrkCtrl.addGoals)
 
+router.get('/completed', wrkCtrl.getCompleted)
+
 
 // router.get('/goals', wrkCtrl.goals)
 

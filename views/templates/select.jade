@@ -4,8 +4,8 @@ block whatever
     .row
       .col-xs-8.col-xs-offset-2
         h1 Complete Your Scheduled Workout for Today:
-        a(href="#/bridge/complete")
-          button.btn.btn-danger Full-body
+        a(href="#/bridge/complete/{{select.today._id}}")
+          button.btn.btn-danger {{select.today.name}}
         h3 Or, choose from your list of workouts
         .panel.panel-warning
           .panel-heading

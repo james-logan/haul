@@ -61,9 +61,14 @@ Workout.findCompleted = function (userObj, compWork, cb) {
   mongo.getDb().collection('completed').updateOne({userId: userObj._id}, {$push: {completed: compWork}}, {upsert: true}, cb)
 }
 
-Workout.pullCompleted = function (userObj, cb) {
+Workout.pullCompleted = function (userObj, cb1, cb) {
   mongo.getDb().collection('completed').findOne({userId: userObj._id}, function (err, past) {
-    Workout.scheduler(err, past, cb)
+    if (cb) {
+      cb1(err, past, cb)
+    } else {
+      cb1(err, past)
+    }
+
   })
 }
 

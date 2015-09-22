@@ -49,7 +49,7 @@ module.exports = {
     })
   },
   grab: function (req, res) {
-    workOutModel.pullCompleted(req.session.user, function (err, data) {
+    workOutModel.pullCompleted(req.session.user, workOutModel.scheduler, function (err, data) {
       if (err) {
         res.status(500).send(err)
       } else {
@@ -78,6 +78,15 @@ module.exports = {
   },
   getGoals: function (req, res) {
     workOutModel.getGoals(req.session.user, function (err, data) {
+      if (err) {
+        res.status(500).send(err)
+      } else {
+        res.status(200).send(data)
+      }
+    })
+  },
+  getCompleted: function (req, res) {
+    workOutModel.pullCompleted(req.session.user, function (err, data) {
       if (err) {
         res.status(500).send(err)
       } else {
