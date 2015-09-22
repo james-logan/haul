@@ -243,7 +243,7 @@ angular
     var vm = this;
     vm.programs;
     vm.goals = {};
-    vm.goalWeight = {};
+    vm.goalWeight;
     vm.program;
     vm.exercises;
     $http
@@ -251,12 +251,16 @@ angular
       .then(function (data) {
         vm.programs = data.data;
       })
-    // $http
-    //   .get('/api/goals')
-    //   .then(function (data) {
-    //     vm.goals = data.data.goals;
-    //     vm.program = data.data.program;
-    //   })
+    $http
+      .get('/api/goals')
+      .then(function (data) {
+        if (data.data.goals) {
+          vm.goals = data.data.goals;
+        }
+        vm.goalWeight = data.data.goalWeight;
+        vm.program = data.data.program;
+        vm.parseExercises(data.data.program);
+      })
 
     vm.addGoal = function (exer) {
       var goalExer = {
@@ -267,10 +271,14 @@ angular
     }
 
     vm.postGoals = function () {
-      $http
-        .post('/api/goals/goals', vm.goals)
-        .then(function (data) {
+      var additions = {}
+      additions.goals = vm.goals;
+      additions.goalWeight = vm.goalWeight;
 
+      $http
+        .post('/api/goals/goals', additions)
+        .then(function (data) {
+          console.log(data.data)
         })
     }
     vm.adoptProgram = function (index) {

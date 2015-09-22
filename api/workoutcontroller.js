@@ -66,5 +66,23 @@ module.exports = {
         res.status(200).send(data)
       }
     })
+  },
+  addGoals: function (req, res) {
+    workOutModel.addGoals(req.session.user, req.body, function (err, data) {
+      if (err) {
+        res.status(500).send(err)
+      } else {
+        res.status(200).send(data)
+      }
+    })
+  },
+  getGoals: function (req, res) {
+    workOutModel.getGoals(req.session.user, function (err, data) {
+      if (err) {
+        res.status(500).send(err)
+      } else {
+        res.status(200).send(data)
+      }
+    })
   }
 }

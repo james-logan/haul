@@ -20,7 +20,10 @@ router.post('/complete', wrkCtrl.finish)
 
 router.get('/schedule', wrkCtrl.grab)
 
+router.get('/goals', wrkCtrl.getGoals)
 router.post('/goals/program', wrkCtrl.adopt)
+router.post('/goals/goals', wrkCtrl.addGoals)
+
 
 // router.get('/goals', wrkCtrl.goals)
 
