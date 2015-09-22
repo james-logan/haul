@@ -238,5 +238,44 @@ angular
         console.log(data);
         vm.eventSources.push(data.data);
       })
+  })
+  .controller('goalController', function ($scope, $http) {
+    var vm = this;
+    vm.programs;
+    vm.goals;
+    vm.program;
+    $http
+      .get('/api/programs')
+      .then(function (data) {
+        console.log(data.data)
+        vm.programs = data.data;
+      })
+    // $http
+    //   .get('/api/goals')
+    //   .then(function (data) {
+    //     vm.goals = data.data.goals;
+    //     vm.program = data.data.program;
+    //   })
 
+    vm.addGoal = function () {
+
+    }
+
+    vm.postGoals = function () {
+      $http
+        .post('/api/goals/goals', vm.goals)
+        .then(function (data) {
+
+        })
+    }
+    vm.adoptProgram = function (index) {
+      vm.program = vm.programs[index];
+      console.log(vm.programs[index])
+      console.log(vm.program)
+      $http
+        .post('/api/goals/program', vm.program)
+        .then(function (data) {
+          //do nothing
+        })
+    }
   })

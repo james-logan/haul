@@ -19,14 +19,12 @@ app.use(session({
 }))
 
 app.use(function (req, res, next) {
-  console.log('SESSION>>>>>>>>>>', req.session)
   next();
 })
 
 //setting the local user value for that response
 app.use(function getAuthStatus(req, res, next) {
   if (req.session.user) {
-    console.log(req.session.user)
     res.locals.user = req.session.user;
   } else {
     res.locals.user = null;

@@ -22,7 +22,6 @@ router.post('/login', function (req, res) {
     } else {
       res.locals.user = user;
       req.session.regenerate(function () {
-        console.log('USER>>>>>>', user)
         req.session.user = user;
         res.status(200).send({win: true})
       })

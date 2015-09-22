@@ -19,8 +19,23 @@ Workout.saveNew = function (userObj, workoutObj, cb) {
 }
 
 Workout.findAll = function (userObj, cb) {
+
   mongo.getDb().collection('workouts').find({"authorid": userObj._id}).toArray(function (err, data) {
     cb(err, data);
+  })
+}
+
+Workout.findProgs = function (userObj, cb) {
+  console.log(userObj);
+  mongo.getDb().collection('programs').find({"authorid": userObj._id}).toArray(function (err, data) {
+    console.log("running?")
+    if (err) {
+      console.log(err)
+      cb(err, null)
+    } else {
+      console.log('not an error')
+      cb(null, data)
+    }
   })
 }
 
@@ -69,6 +84,40 @@ Workout.scheduler = function (err, past, cb) {
   } else {
     cb(err, null)
   }
+}
+
+Workout.makeExtendedProg = function (userObj, program, cb) {
+  console.log(program)
+  var days = program.days.map(function (wo) {
+    if (wo != 'Rest') {
+      return ObjectID(wo)
+    } else {
+      return 'Rest'
+    }
+
+  })
+  mongo.getDb().collection('workouts').find({_id:{$in: days}}).toArray(function (err, data) {
+    if (err) {
+      cb(err, null)
+    } else {
+      data.forEach(function (wo) {
+        program.days.forEach(function (day, i) {
+          console.log('DAY', i+1)
+          console.log(typeof day, day)
+          if (typeof day != 'object' && day != "Rest" && ObjectID(day).equals(wo._id)) {
+            // console.log(program.days[i])
+            program.days[i] = wo;
+            // console.log(program.days[i])
+          }
+        })
+      })
+      Workout.adopt(userObj, program, cb)
+    }
+  })
+}
+
+Workout.adopt = function (userObj, programExt, cb) {
+  mongo.getDb().collection('goals').updateOne({'goalOwner': userObj._id}, {goalOwner: userObj._id, program: programExt}, {upsert: true}, cb)
 }
 
 module.exports = Workout;

@@ -11,7 +11,6 @@ module.exports = {
     })
   },
   saveProg: function (req, res) {
-    console.log('controller save prog running')
     workOutModel.saveProg(req.session.user, req.body, function (err, data) {
       if (err) {
         res.status(500).send(err)
@@ -19,6 +18,15 @@ module.exports = {
         res.status(200).send("It worked")
       }
     })
+  },
+  findProgs: function (req, res) {
+      workOutModel.findProgs(req.session.user, function (err, data) {
+        if (err) {
+          res.status(500).send(err)
+        } else {
+          res.status(200).send(data)
+        }
+      })
   },
   findAll: function (req, res) {
     workOutModel.findAll(req.session.user, function (err, data) {
@@ -32,7 +40,6 @@ module.exports = {
     })
   },
   finish: function (req, res) {
-    console.log(req.body)
     workOutModel.findCompleted(req.session.user, req.body, function (err, data) {
       if (err) {
         res.status(500).send(err)
@@ -46,6 +53,16 @@ module.exports = {
       if (err) {
         res.status(500).send(err)
       } else {
+        res.status(200).send(data)
+      }
+    })
+  },
+  adopt: function (req, res) {
+    workOutModel.makeExtendedProg(req.session.user, req.body, function (err, data) {
+      if (err) {
+        res.status(500).send(err)
+      } else {
+        console.log(data)
         res.status(200).send(data)
       }
     })

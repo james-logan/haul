@@ -5,38 +5,30 @@ block whatever
       .col-xs-12
         h1.page-title Adopt a Program and Set Goals
       .col-xs-6
-        h4 Current Program: Prog Name
+        h4 Current Program: {{goal.program.name}}
         .panel.panel-primary
           .panel-heading
             .panel-title My Programs
           .panel-body.overflow-scroll
-            div
-              h5.pull-left Program Name
-              button(ng-click="").btn.btn-success.pull-right +
+            div.clearfix(ng-repeat="prog in goal.programs")
+              h5.pull-left {{prog.name}}
+              button(ng-click="goal.adoptProgram($index)").btn.btn-success.pull-right +
         .panel.panel-primary
           .panel-heading
             .panel-title Exercises Available
           .panel-body.overflow-scroll
             div
               h5.pull-left Exercise Name
-              button(ng-click="").btn.btn-success.pull-right +
+              button(ng-click="goal.addGoal()").btn.btn-success.pull-right +
       .col-xs-6
         h3 Current Goals
         table.table
+          tr(ng-repeat="goal in goal.goals")
+            th {{goal.name}}
+            td {{goal.number}}
           tr
-            th Weight
-            td Maintain
-          tr
-            th Lat Pull Downs
-            td 70 lbs
-          tr
-            th Squats
-            td 300 lbs
-          tr
-            th Deadlift
-            td 400lbs
-          tr
-            th Bench Press
-            td 225 lbs
+            th
+            td
+              button.btn.btn-success.btn-block(ng-click="goal.postGoals()") Save Goals
 
 

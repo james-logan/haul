@@ -15,7 +15,6 @@ User.create = function (u, cb) {
     u.hashedPassword = hashedPassword;
     var user = new User(u);
     mongo.getDb().collection('users').insertOne(user, function (err, data) {
-      console.log(data)
       cb(err, data.ops[0]);
     })
   })
@@ -23,10 +22,8 @@ User.create = function (u, cb) {
 
 User.login = function (u, cb) {
   mongo.getDb().collection('users').findOne({username: u.username}, function (err, user) {
-    console.log(user)
     if (user) {
       bcrypt.compare(u.password, user.hashedPassword, function (err, match) {
-        console.log(match)
         if (match) {
           cb(null, user)
         } else {
