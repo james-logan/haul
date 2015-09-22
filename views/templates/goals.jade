@@ -17,8 +17,8 @@ block whatever
           .panel-heading
             .panel-title Exercises Available
           .panel-body.overflow-scroll
-            div
-              h5.pull-left Exercise Name
+            div.clearfix(ng-repeat="exer in goal.exercises")
+              h5.pull-left {{exer.name}}
               button(ng-click="goal.addGoal()").btn.btn-success.pull-right +
       .col-xs-6
         h3 Current Goals

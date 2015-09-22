@@ -244,10 +244,10 @@ angular
     vm.programs;
     vm.goals;
     vm.program;
+    vm.exercises;
     $http
       .get('/api/programs')
       .then(function (data) {
-        console.log(data.data)
         vm.programs = data.data;
       })
     // $http
@@ -270,12 +270,25 @@ angular
     }
     vm.adoptProgram = function (index) {
       vm.program = vm.programs[index];
-      console.log(vm.programs[index])
-      console.log(vm.program)
       $http
         .post('/api/goals/program', vm.program)
         .then(function (data) {
           //do nothing
+          vm.parseExercises(data.data)
         })
+    }
+
+    vm.parseExercises = function (obj) {
+      var workArr = []
+      obj.days.forEach(function (day) {
+        if (day !== 'Rest') {
+          workArr.push(day.exercises);
+        }
+      })
+      console.log(workArr)
+      workArr = _.flatten(workArr)
+      console.log(workArr)
+      var retArr = _.uniq(workArr, false, "_id")
+      vm.exercises = retArr;
     }
   })

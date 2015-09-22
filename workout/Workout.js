@@ -117,7 +117,9 @@ Workout.makeExtendedProg = function (userObj, program, cb) {
 }
 
 Workout.adopt = function (userObj, programExt, cb) {
-  mongo.getDb().collection('goals').updateOne({'goalOwner': userObj._id}, {goalOwner: userObj._id, program: programExt}, {upsert: true}, cb)
+  mongo.getDb().collection('goals').updateOne({'goalOwner': userObj._id}, {goalOwner: userObj._id, program: programExt}, {upsert: true}, function (err, data) {
+    cb(err, programExt)
+  })
 }
 
 module.exports = Workout;
