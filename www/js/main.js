@@ -179,7 +179,7 @@ angular
         data.data.completed.reverse().some(function (item, i) {
           if (item.progCount) {
             day = item.progCount
-            return false;
+            return true;
           }
         })
         day = day || -1;
@@ -282,12 +282,65 @@ angular
         .then(function (data) {
           //do shit with data
           console.log(data);
-          vm.createFuture(pastWorkouts, data)
+          vm.createFuture(pastWorkouts, data.data)
         })
     }
 
     vm.createFuture = function (pastWorkouts, goalsObj) {
+      var eventsList = [];
+      var lastWo = -1;
+      var lastDay;
+      // console.log(pastWorkouts)
+      pastWorkouts.events.reverse().some(function (wo) {
+        if (wo.progDay) {
+          lastWo = wo.progDay;
+          lastDay = new Date(wo.date)
+          return true;
+        }
+      })
+      var today = new Date();
+      today = today.toDateString()
+      var firstDay
+      console.log('lastDay', lastDay)
+      console.log(lastDay.toDateString())
+      console.log('today', today)
+      if (lastDay.toDateString() === today) {
+        firstDay = new Date(today)
+        firstDay = new Date(firstDay.valueOf() + (24*60*60*1000))
+      } else {
+        firstDay = new Date(today)
+      }
 
+      var i = parseInt(lastWo + 1);
+      console.log(goalsObj.program.days)
+      while(eventsList.length < 90) {
+        if (goalsObj.program.days[i] !== "Rest") {
+          var even = _.clone(goalsObj.program.days[i])
+
+          even.start = firstDay.toISOString()
+
+          eventsList.push(even)
+        }
+        if (even) { console.log(even) }
+        i = ((i+1) % goalsObj.program.days.length)
+        firstDay = new Date(parseInt(firstDay.valueOf() + (24*60*60*1000)))
+        // console.log(even.start)
+      }
+      eventsList = eventsList.map(function (event) {
+        event.title = event.name;
+        event.allDayDefault = true;
+        return event
+      })
+
+      var eventObj = {
+        events: eventsList,
+        color: 'pink',
+        textColor: 'black',
+        allDayDefault: true
+      }
+
+      vm.eventSources.push(eventObj)
+      // $scope.$apply();
     }
   })
   .controller('goalController', function ($scope, $http) {
