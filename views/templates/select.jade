@@ -1,16 +1,18 @@
 extends ../bridge.jade
 block whatever
   .col-xs-10.col-xs-offset-2
+    .row(style="height: 50px;")
     .row
       .col-xs-8.col-xs-offset-2
-        h1 Complete Your Scheduled Workout for Today:
-        a(href="#/bridge/complete/{{select.today._id}}")
-          button.btn.btn-danger {{select.today.name}}
-        h3 Or, choose from your list of workouts
-        .panel.panel-warning
-          .panel-heading
-            .panel-title Select a Workout
-          .panel-body.overflow-scroll
-            .panel(ng-repeat="work in select.workouts")
-              a(href="#/bridge/complete/{{work._id}}")
-                button.btn.btn-primary.btn-block {{work.name}}
+        .controll-panel
+          h2 Complete Your Scheduled Workout:
+          a(href="#/bridge/complete/{{select.today._id}}")
+            button.btn.btn-danger.btn-block {{select.today.name}}
+          h3 Or, choose from your list of workouts
+          .panel.panel-warning
+            .panel-heading
+              .panel-title Select a Workout
+            .panel-body.overflow-scroll
+              .panel(ng-repeat="work in select.workouts")
+                a(href="#/bridge/complete/{{work._id}}")
+                  button.btn.btn-primary.btn-block {{work.name}}

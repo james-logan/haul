@@ -1,24 +1,27 @@
-.container-fluid.big
-      .row.big
-        .col-xs-2.bg-primary.big.menu
-          .container-fluid
-            .row
-              h1.orbitron HAUL
-              a(href="#/")
-                button.btn.btn-warning.btn-sm Home
-              a(href="#/user/logout")
-                button.btn.btn-warning.btn-sm Logout
-              .pull-right.special-nav
-                  a(href="#/bridge/select")
-                    .box Complete A Workout
-                  a(href="#/bridge/goals")
-                    .box Goals/Programs
-                  a(href="#/bridge/stats")
-                    .box Stats/Graphs
-                  a(href="#/bridge/schedule")
-                    .box Schedule
-                  a(href="#/bridge/newworkout")
-                    .box Create Workouts
-                  a(href="#/bridge/programs")
-                    .box Create Programs
-        block whatever
+extends ./index.jade
+block content
+  .container-fluid.big
+        .row.big
+          .col-xs-2.bg-primary.big.menu
+            .container-fluid
+              .row
+                h1(style="line-height: 50px;").orbitron HAUL
+                div.button-box
+                  a(href="#/")
+                    button.btn.btn-warning.btn-sm Home
+                  a(href="#/user/logout")
+                    button.btn.btn-warning.btn-sm Logout
+                .pull-right.special-nav
+                    a(href="#/bridge/select")
+                      .box Complete A Workout
+                    a(href="#/bridge/goals")
+                      .box Goals/Programs
+                    a(href="#/bridge/stats")
+                      .box Stats/Graphs
+                    a(href="#/bridge/schedule")
+                      .box Schedule
+                    a(href="#/bridge/newworkout")
+                      .box Create Workouts
+                    a(href="#/bridge/programs")
+                      .box Create Programs
+  block whatever

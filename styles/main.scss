@@ -3,12 +3,17 @@
   src: url('../assets/VanBerger_Stencil.otf')  format('opentype');
 }
 
+body {
+  background-image: url('../assets/honeycomb-34984_1280.png');
+  background-size: 300%;
+}
+
 .big {
   height: 100%;
 }
 
 .menu {
-  background-color: black;
+  background-color: rgb(25, 25, 25);
   box-shadow: 0 0 10px black;
   color: white;
   height: 650px;
@@ -57,11 +62,15 @@
   max-height: 250px;
 }
 
-.fat {
-  li > button {
-    width: 100%;
-    /*border-radius: 5px;*/
-  }
+// .fat {
+//   li > button {
+//     width: 100%;
+//     /*border-radius: 5px;*/
+//   }
+// }
+
+* {
+  font-family: "Titillium Web";
 }
 
 .orbitron {
@@ -136,13 +145,15 @@ nav {
 //complete page styles
 
 .exercise-block {
+  margin-left: 250px;
   .btn-group-vertical {
     margin: 5px 3px;
   }
 }
 
 .day {
-  width: 14%;
+  width: 12%;
+  margin-left: 15px;
 }
 
 .weight {
@@ -159,3 +170,40 @@ button[disabled="disabled"] {
   color: black !important;
 }
 
+.controll-panel {
+  background-color: rgba(47, 79, 79, .2);
+  // border: 2px solid black;
+  border-radius: 0px;
+  padding: 10px;
+  // box-shadow: 1px 2px 3px black;
+  &.white {
+    background-color: rgba(255, 255, 255, .7);
+    border: 1px solid darkgray;
+  }
+}
+
+.panel {
+  background-color: rgba(47, 79, 79, .2);
+  // border-color: black;
+  border: none;
+  border-radius: 1px;
+  // box-shadow: inset 0 0 5px slategray;
+  .panel-heading {
+    background-color: black;
+    border-radius: 1px;
+    color: white;
+  }
+}
+
+.table-holder {
+  height: 175px;
+}
+
+button.btn {
+  border-radius: 0px;
+}
+
+.button-box {
+  width: 120px;
+  margin: auto;
+}

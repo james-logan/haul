@@ -3,4 +3,7 @@ block whatever
   .col-xs-10.col-xs-offset-2
     .row
       .col-xs-10.col-xs-offset-1
-        div(ui-calendar="uiConfig.calendar" ng-model="sched.eventSources")
+        h1.page-title Schedule
+      .col-xs-10.col-xs-offset-1
+        div.controll-panel.white
+          div(ui-calendar="uiConfig.calendar" ng-model="sched.eventSources")

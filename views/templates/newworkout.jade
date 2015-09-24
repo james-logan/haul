@@ -6,8 +6,13 @@ block whatever
       .col-xs-12
         h2.squish Create Workout
     .row
-      label Workout Name
-      input(type='text' ng-model="bridge.workout.name")
+      .col-xs-12
+        .col-xs-5
+          form.form-inline
+            .form-group
+              label
+                h4(style="display: inline;") Workout Name
+              input.form-control(type='text' ng-model="bridge.workout.name" style="width: 250px; margin: 0 0 10px 10px;")
       .col-xs-5
         .panel.panel-primary
           .panel-heading
@@ -75,11 +80,11 @@ block whatever
           .panel-heading
             .panel-title Results
           .panel-body.overflow-scroll
-            div(ng-repeat="exercise in bridge.results")
+            div.clearfix(ng-repeat="exercise in bridge.results")
               h5.pull-left {{exercise.name}}
               button(ng-click="bridge.addExercise(exercise)").btn.btn-success.pull-right +
     .row
-      .col-xs-12.overflow-scroll
+      .col-xs-12.overflow-scroll.table-holder
         table.table
           tr
             th Exercise

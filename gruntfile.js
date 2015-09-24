@@ -41,7 +41,7 @@ var randomPort = getRandomInt(3000, 65536);
           {
             expand: true,
             cwd: 'views/templates',
-            src: ['**/*.jade', '!**/_*.jade'],
+            src: ['**/*.jade', '!**/_*.jade', '*.jade'],
             dest: 'www/templates',
             ext: '.html'
           }

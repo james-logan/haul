@@ -321,10 +321,8 @@ angular
 
           eventsList.push(even)
         }
-        if (even) { console.log(even) }
         i = ((i+1) % goalsObj.program.days.length)
         firstDay = new Date(parseInt(firstDay.valueOf() + (24*60*60*1000)))
-        // console.log(even.start)
       }
       eventsList = eventsList.map(function (event) {
         event.title = event.name;

@@ -1,33 +1,31 @@
 extends ../bridge.jade
 block whatever
   .col-xs-10.col-xs-offset-2
+    h1.page-title {{complete.workout.name}}
+  .col-xs-9.col-xs-offset-2.exercise-block
     .row
-      .col-xs-12
-        h1.page-title {{complete.workout.name}}
-      .col-xs-12.exercise-block
-        .row
-          .col-xs-4
-            h3.text-left Exercise
-          .col-xs-2
-            h3.text-left Weight
-          .col-xs-6
-            h3.text-left Sets
-      .col-xs-12.exercise-block(ng-repeat="exer in complete.workout.exercises")
-        .row
-          .col-xs-4.weight
-            h4.text-left {{exer.name}}
-          .col-xs-2.weight
-            input(type="number" style="width:60px;" ng-model="exer.weight")
-            h4.text-left lbs
-          .col-xs-6
-            div.btn-group-vertical(ng-repeat="set in exer.sets track by $index")
-              button.btn.btn-danger.btn-xs(ng-click="set.upTick()") +
-              button(ng-click="set.complete()" ng-disabled="set.completionStatus").btn.btn-warning {{set.reps}}
-              button.btn.btn-danger.btn-xs(ng-click="set.downTick()") -
-      .col-xs-12
-        form(ng-submit="complete.completeWorkout()")
-          .form-group
-            label Current Weight:
-            input.form-control(type="number" min="0" ng-model="complete.workout.weight")
-          button.btn.btn-danger(type="submit") Finish Workout
+      .col-xs-4
+        h3.text-left Exercise
+      .col-xs-2
+        h3.text-left Weight
+      .col-xs-6
+        h3.text-left Sets
+  .col-xs-9.col-xs-offset-2.exercise-block.controll-panel.white(ng-repeat="exer in complete.workout.exercises")
+    .row
+      .col-xs-4.weight
+        h4.text-left {{exer.name}}
+      .col-xs-2.weight
+        input(type="number" style="width:60px;" ng-model="exer.weight")
+        h4.text-left lbs
+      .col-xs-6
+        div.btn-group-vertical(ng-repeat="set in exer.sets track by $index")
+          button.btn.btn-danger.btn-xs(ng-click="set.upTick()") +
+          button(ng-click="set.complete()" ng-disabled="set.completionStatus").btn.btn-warning {{set.reps}}
+          button.btn.btn-danger.btn-xs(ng-click="set.downTick()") -
+  .col-xs-9.col-xs-offset-2.exercise-block.controll-panel.white
+    form(ng-submit="complete.completeWorkout()")
+      .form-group
+        label Current Weight:
+        input.form-control(type="number" min="0" ng-model="complete.workout.weight")
+      button.btn.btn-danger(type="submit") Finish Workout
 
