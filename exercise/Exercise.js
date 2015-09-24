@@ -1,4 +1,5 @@
 var mongo = require('../lib/mongodb.js');
+var fuzzy = require('fuzzy');
 
 var Exercise = function (pojo) {
   this.name = pojo.name;
@@ -9,7 +10,25 @@ var Exercise = function (pojo) {
 }
 
 Exercise.find = function (query, cb) {
-  mongo.getDb().collection('exercises').find({"name": query}).toArray(cb)
+  mongo.getDb().collection('exercises').find({}).toArray(function (err, arr) {
+      console.log(err)
+      console.log(arr)
+      var options = {
+        extract: function (exerObj) {
+          if (exerObj.name) {
+            return exerObj.name
+          } else {
+            return ""
+          }
+
+        }
+      }
+      var results = fuzzy.filter(query, arr, options)
+      var results = results.map(function (result) {
+        return result.original
+      })
+      cb(err, results)
+  })
 }
 
 Exercise.insertOne = function (exerciseObj, cb) {
