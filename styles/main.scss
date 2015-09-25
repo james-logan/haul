@@ -3,22 +3,25 @@
   src: url('../assets/VanBerger_Stencil.otf')  format('opentype');
 }
 
-body {
+body, .honeycomb {
+  background-color: white;
   background-image: url('../assets/honeycomb-34984_1280.png');
   background-size: 300%;
 }
 
-.big {
-  height: 100%;
-}
+// body {
+//   background: lightgray;
+// }
 
 .menu {
   background-color: rgb(25, 25, 25);
   box-shadow: 0 0 10px black;
   color: white;
-  height: 650px;
+  min-height: 650px;
+  height: 100%;
   position:fixed;
 }
+
 
 .special-nav {
   margin-top: 20px;
@@ -26,14 +29,16 @@ body {
   .box {
     padding: 10px;
     vertical-align: middle;
-    height: 50px;
-    width: 200px;
+    height: 75px;
+    width: 300px;
     // background-color: darkgray;
     border-bottom: 1px solid darkgray;
     border-top: 1px solid darkgray;
   }
   a {
       color: white;
+      font-size: 20px;
+      vertical-align: middle;
     }
 }
 
@@ -41,9 +46,9 @@ body {
   margin-top: 200px;
 }
 
-.front-content {
-  margin-bottom: 30px;
-}
+// .front-content {
+//   margin-bottom: 30px;
+// }
 
 .foot {
   background-color: black;
@@ -101,7 +106,8 @@ body {
   height: 500px;
   background-image: url(../assets/training-601214.jpg);
   background-attachment: fixed;
-  background-size: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
   h1 {
     margin-right: 50px;
     font-size: 100px;
@@ -114,6 +120,7 @@ body {
   background-image: url(../assets/training-828741.jpg);
   background-attachment: fixed;
   background-size: 100%;
+  background-repeat: no-repeat;
 }
 
 .intro {
@@ -145,7 +152,7 @@ nav {
 //complete page styles
 
 .exercise-block {
-  margin-left: 250px;
+  // margin-left: 250px;
   .btn-group-vertical {
     margin: 5px 3px;
   }
@@ -204,6 +211,9 @@ button.btn {
 }
 
 .button-box {
-  width: 120px;
-  margin: auto;
+  width: 220px;
+  margin: 0 0 50px 0;
+  .btn.btn-sm {
+    width: 85px;
+  }
 }

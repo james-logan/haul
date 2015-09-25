@@ -2,7 +2,7 @@ extends ../bridge.jade
 block whatever
   .col-xs-10.col-xs-offset-2
     h1.page-title {{complete.workout.name}}
-  .col-xs-9.col-xs-offset-2.exercise-block
+  .col-xs-8.col-xs-offset-3.exercise-block
     .row
       .col-xs-4
         h3.text-left Exercise
@@ -10,7 +10,7 @@ block whatever
         h3.text-left Weight
       .col-xs-6
         h3.text-left Sets
-  .col-xs-9.col-xs-offset-2.exercise-block.controll-panel.white(ng-repeat="exer in complete.workout.exercises")
+  .col-xs-8.col-xs-offset-3.exercise-block.controll-panel.white(ng-repeat="exer in complete.workout.exercises")
     .row
       .col-xs-4.weight
         h4.text-left {{exer.name}}
@@ -22,7 +22,7 @@ block whatever
           button.btn.btn-danger.btn-xs(ng-click="set.upTick()") +
           button(ng-click="set.complete()" ng-disabled="set.completionStatus").btn.btn-warning {{set.reps}}
           button.btn.btn-danger.btn-xs(ng-click="set.downTick()") -
-  .col-xs-9.col-xs-offset-2.exercise-block.controll-panel.white
+  .col-xs-8.col-xs-offset-3.exercise-block.controll-panel.white
     form(ng-submit="complete.completeWorkout()")
       .form-group
         label Current Weight:
