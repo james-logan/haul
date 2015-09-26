@@ -69,11 +69,6 @@ angular
         controller: 'registerController',
         controllerAs: 'register'
       })
-      .when('/exercise', {
-        templateUrl: 'templates/exercise.html',
-        controller: 'loginController',
-        controllerAs: 'login'
-      })
       .when('/bridge/goals', {
         templateUrl: 'templates/goals.html',
         controller: 'goalController',

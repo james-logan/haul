@@ -49,7 +49,7 @@ angular
   })
   .controller('frontPage', function ($scope) {
     console.log('front controller instantiated')
-    $('.front').parent().css('background-color', 'lightgray')
+    $('.front').parent().css('background-color', 'rgb(230, 230, 230)')
   })
   .controller('logoutController', function ($scope, $http, $location) {
     console.log('logout controller instantiated')

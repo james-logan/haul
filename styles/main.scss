@@ -26,14 +26,19 @@ body, .honeycomb {
 .special-nav {
   margin-top: 20px;
   margin-right: -14px;
+  width: 105%;
   .box {
     padding: 10px;
     vertical-align: middle;
     height: 75px;
-    width: 300px;
-    // background-color: darkgray;
+    width: 100%;
     border-bottom: 1px solid darkgray;
     border-top: 1px solid darkgray;
+  }
+  @media screen and (min-width: 1800px) {
+    // .box {
+    //   width:
+    // }
   }
   a {
       color: white;
@@ -67,24 +72,14 @@ body, .honeycomb {
   max-height: 250px;
 }
 
-// .fat {
-//   li > button {
-//     width: 100%;
-//     /*border-radius: 5px;*/
-//   }
-// }
-
 * {
   font-family: "Titillium Web";
 }
 
 .orbitron {
   font-family: "VanBerg";
-  /*font-family: Orbitron;*/
   font-weight: 900;
-  /*color: rgb(255, 204, 0);*/
   font-size: 65px;
-  /*text-shadow: 0 0 5px rgb(235, 184, 0);*/
 }
 
 .btn-trans {
@@ -211,9 +206,10 @@ button.btn {
 }
 
 .button-box {
-  width: 220px;
+  width: 100%;
   margin: 0 0 50px 0;
   .btn.btn-sm {
     width: 85px;
+    margin-top: 5px;
   }
 }
