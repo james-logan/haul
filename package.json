@@ -4,7 +4,8 @@
   "description": "A fitness tracking application for individuals and trainers to create workouts and record their data. It will perform basic statistical analyses on aggregate data from all users.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
