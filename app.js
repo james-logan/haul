@@ -55,7 +55,7 @@ app.use(function (req, res, next) {
   if (req.session.user) {
     next();
   } else {
-    res.send(403, {redirect: true})
+    res.status(403).send({redirect: true})
   }
 })
 

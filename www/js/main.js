@@ -1,9 +1,5 @@
 angular
   .module('haul', ['ngRoute', 'ngCookies', 'ui.calendar'])
-  .run(function ($rootScope) {
-
-    $rootScope.day = $rootScope.day
-  })
   .controller('mainControlBridge', function ($scope, $http, $location) {
     console.log('controller instantiated')
     var vm = this;
@@ -48,21 +44,20 @@ angular
     }
   })
   .controller('frontPage', function ($scope) {
-    console.log('front controller instantiated')
     $('.front').parent().css('background-color', 'rgb(230, 230, 230)')
   })
-  .controller('logoutController', function ($scope, $http, $location) {
-    console.log('logout controller instantiated')
+  .controller('logoutController', function ($http, $location) {
     $http
       .post('/user/logout', {})
-      .success(function () {
+      .then(function () {
         console.log('logout successful')
         $location.path('/user/login')
+      }, function (err) {
+        console.log('logout failed', err)
       })
   })
   .controller('loginController', function ($scope, $http, $rootScope, $location) {
     var vm = this;
-    console.log('login controller instantiated');
     vm.info = {
       username: "",
       password: ""
@@ -70,13 +65,12 @@ angular
     vm.login = function () {
       $http
         .post('/user/login', vm.info)
-        .success(function(data) {
+        .then(function(data) {
           console.log(data)
           $rootScope.userData = data;
           $location.path('/bridge/newworkout')
-        })
-        .error(function(data) {
-          console.log(data)
+          }, function(err) {
+          console.log(err)
         })
     }
   })
@@ -93,8 +87,10 @@ angular
     vm.register = function () {
       $http
         .post('/user/register', vm.info)
-        .success(function () {
+        .then(function () {
           $location.path('/bridge/newworkout');
+        }, function (err) {
+          console.log('registration failed', err)
         })
     }
   })
@@ -135,8 +131,10 @@ angular
 
     $http
       .get('/api/workout?id=' + $routeParams.id)
-      .success(function (data) {
+      .then(function (data) {
         vm.workout = vm.setExpander(data)
+      }, function (err) {
+        console.log(err)
       })
 
     vm.truncate = function (compWork) {
@@ -159,8 +157,10 @@ angular
       parcel.progDay = vm.day;
       $http
         .post('/api/complete', parcel)
-        .success(function(data) {
+        .then(function(data) {
           $location.path('/bridge/schedule')
+        }, function (err) {
+          console.log(err)
         })
     }
   })
@@ -185,11 +185,21 @@ angular
         })
         day = day || -1;
         vm.getProgram(day);
+      }, function (err) {
+        console.log(err)
+        if (err.data.redirect === true) {
+          $location.path('/user/login')
+        }
       })
     $http
       .get('/api/workouts')
-      .success(function (data) {
+      .then(function (data) {
         vm.workouts = data;
+      }, function (err) {
+        console.log(err)
+        if (err.data.redirect === true) {
+          $location.path('/user/login')
+        }
       })
 
     vm.getProgram = function (day) {
@@ -221,20 +231,32 @@ angular
       name: "",
       days: []
     }
+
     vm.days = function () {
       return new Array(vm.cycle)
     }
     vm.submit = function () {
       $http
         .post('/api/programs', vm.program)
-        .success(function (data) {
+        .then(function (data) {
           console.log('it worked')
+        }, function (err) {
+          console.log(err)
+          if (err.data.redirect === true) {
+            $location.path('/user/login')
+          }
         })
     }
+
     $http
       .get('/api/workouts')
-      .success(function (data) {
+      .then(function (data) {
         vm.workouts = data;
+      }, function (err) {
+        console.log(err)
+        if (err.data.redirect === true) {
+          $location.path('/user/login')
+        }
       })
   })
   .controller('statsController', function ($http, $location) {
@@ -246,18 +268,23 @@ angular
     vm.info;
     $http
       .get('/user/stats')
-      .success(function (data) {
+      .then(function (data) {
         vm.info = data;
+      }, function (err) {
+        console.log(err)
+        if (err.data.redirect === true) {
+          $location.path('/user/login')
+        }
       })
   })
-  .controller('scheduleController', function ($scope, $http) {
+  .controller('scheduleController', function ($scope, $http, $location) {
     var vm = this;
     vm.eventSources = [];
 
     $scope.uiConfig = {
       calendar:{
         height: 450,
-        editable: true,
+        editable: false,
         header:{
           left: 'month basicWeek basicDay',
           center: 'title',
@@ -275,6 +302,11 @@ angular
         console.log(data);
         vm.eventSources.push(data.data);
         vm.getGoals(data.data)
+      }, function (err) {
+        console.log(err)
+        if (err.data.redirect === true) {
+          $location.path('/user/login')
+        }
       })
 
     vm.getGoals = function (pastWorkouts) {
@@ -284,6 +316,11 @@ angular
           //do shit with data
           console.log(data);
           vm.createFuture(pastWorkouts, data.data)
+        }, function (err) {
+          console.log(err)
+          if (err.data.redirect === true) {
+            $location.path('/user/login')
+          }
         })
     }
 
@@ -302,9 +339,6 @@ angular
       var today = new Date();
       today = today.toDateString()
       var firstDay
-      console.log('lastDay', lastDay)
-      console.log(lastDay.toDateString())
-      console.log('today', today)
       if (lastDay.toDateString() === today) {
         firstDay = new Date(today)
         firstDay = new Date(firstDay.valueOf() + (24*60*60*1000))
@@ -313,7 +347,6 @@ angular
       }
 
       var i = parseInt(lastWo + 1);
-      console.log(goalsObj.program.days)
       while(eventsList.length < 90) {
         if (goalsObj.program.days[i] !== "Rest") {
           var even = _.clone(goalsObj.program.days[i])
@@ -353,6 +386,11 @@ angular
       .get('/api/programs')
       .then(function (data) {
         vm.programs = data.data;
+      }, function (err) {
+        console.log(err)
+        if (err.data.redirect === true) {
+          $location.path('/user/login')
+        }
       })
     $http
       .get('/api/goals')
@@ -363,6 +401,11 @@ angular
         vm.goalWeight = data.data.goalWeight;
         vm.program = data.data.program;
         vm.parseExercises(data.data.program);
+      }, function (err) {
+        console.log(err)
+        if (err.data.redirect === true) {
+          $location.path('/user/login')
+        }
       })
 
     vm.addGoal = function (exer) {
@@ -382,6 +425,11 @@ angular
         .post('/api/goals/goals', additions)
         .then(function (data) {
           console.log(data.data)
+        }, function (err) {
+          console.log(err)
+          if (err.data.redirect === true) {
+            $location.path('/user/login')
+          }
         })
     }
     vm.adoptProgram = function (index) {
