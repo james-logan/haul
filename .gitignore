@@ -27,7 +27,6 @@ build/Release
 node_modules
 bower_components
 public
-config/secrets.js
 www/lib/build.js
 www/lib/build.css
 www/templates
