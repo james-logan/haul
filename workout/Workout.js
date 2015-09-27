@@ -39,10 +39,38 @@ Workout.findProgs = function (userObj, cb) {
   })
 }
 
-Workout.findOne = function (id, cb) {
+Workout.findOne = function (id, userObj, cb) {
   mongo.getDb().collection('workouts').findOne({_id: ObjectID(id)}, function (err, data) {
-    cb(err, data)
+    if (err) {
+      cb(err, null)
+    } else {
+      mongo.getDb().collection('completed').findOne({userId: userObj._id}, function (err, obj) {
+        Workout.grabLastWeight(data, obj.completed, cb)
+      })
+    }
+    // cb(err, data)
   })
+}
+
+//this will search past workouts for the exercises in the current workout, and see what the weight performed was. If it finds that the exercise has been performed before, it will put: "past weight + progression" into the weight property of the current workout
+Workout.grabLastWeight = function (current, completed, cb) {
+  current.exercises = current.exercises.map(function (exer) {
+    completed.reverse().some(function (wo) {
+      var doneBefore = wo.exercises.some(function(exercise){
+        if (exer._id === exercise._id && exercise.weight) {
+          exer.weight = exercise.weight + exer.progression;
+          return true
+        }
+      })
+      if (doneBefore) {
+        return true
+      } else {
+        return false
+      }
+    })
+    return exer
+  })
+  cb(null, current);
 }
 
 Workout.saveProg = function (userObj, progObj, cb) {
@@ -52,8 +80,7 @@ Workout.saveProg = function (userObj, progObj, cb) {
   mongo.getDb().collection('programs').insertOne(progObj, cb)
 }
 
-Workout.findCompleted = function (userObj, compWork, cb) {
-  console.log('cat master')
+Workout.updateCompleted = function (userObj, compWork, cb) {
   console.log(compWork)
   compWork.workoutId = compWork._id;
   compWork.date = new Date();

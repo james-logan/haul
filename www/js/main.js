@@ -96,7 +96,6 @@ angular
   })
   .controller('workOutCompletionController', function ($scope, $http, $location, $routeParams, $window) {
     var vm = this;
-    console.log('completions controller instantiated');
     vm.day = $window.sessionStorage.day
 
     var href = $location.path()
@@ -132,7 +131,7 @@ angular
     $http
       .get('/api/workout?id=' + $routeParams.id)
       .then(function (data) {
-        vm.workout = vm.setExpander(data)
+        vm.workout = vm.setExpander(data.data)
       }, function (err) {
         console.log(err)
       })
@@ -177,12 +176,14 @@ angular
       .then(function (data) {
         var day
         console.log(data.data)
-        data.data.completed.reverse().some(function (item, i) {
-          if (item.progCount) {
-            day = item.progCount
-            return true;
-          }
-        })
+        if (data.data) {
+          data.data.completed.reverse().some(function (item, i) {
+            if (item.progCount) {
+              day = item.progCount
+              return true;
+            }
+          })
+        }
         day = day || -1;
         vm.getProgram(day);
       }, function (err) {
@@ -194,7 +195,7 @@ angular
     $http
       .get('/api/workouts')
       .then(function (data) {
-        vm.workouts = data;
+        vm.workouts = data.data;
       }, function (err) {
         console.log(err)
         if (err.data.redirect === true) {

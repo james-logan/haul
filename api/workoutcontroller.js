@@ -34,13 +34,16 @@ module.exports = {
     })
   },
   findOne: function (req, res) {
-    workOutModel.findOne(req.query.id, function (err, data) {
-      if (err) throw err;
-      res.send(data)
+    workOutModel.findOne(req.query.id, req.session.user, function (err, data) {
+      if (err) {
+        res.status(500).send(err)
+      } else {
+        res.status(200).send(data)
+      }
     })
   },
   finish: function (req, res) {
-    workOutModel.findCompleted(req.session.user, req.body, function (err, data) {
+    workOutModel.updateCompleted(req.session.user, req.body, function (err, data) {
       if (err) {
         res.status(500).send(err)
       } else {
